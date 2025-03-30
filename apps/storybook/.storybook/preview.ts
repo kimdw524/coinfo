@@ -1,3 +1,6 @@
+import darkTheme from '@repo/ui/src/themes/darkTheme.css';
+import lightTheme from '@repo/ui/src/themes/lightTheme.css';
+import { withThemeByClassName } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/react';
 
 const preview: Preview = {
@@ -9,6 +12,15 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [
+    withThemeByClassName({
+      themes: {
+        light: lightTheme,
+        dark: darkTheme,
+      },
+      defaultTheme: 'light',
+    }),
+  ],
 };
 
 export default preview;
