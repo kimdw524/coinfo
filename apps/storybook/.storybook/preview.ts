@@ -1,5 +1,4 @@
-import darkTheme from '@repo/ui/src/themes/darkTheme.css';
-import lightTheme from '@repo/ui/src/themes/lightTheme.css';
+import { darkTheme, lightTheme } from '@repo/ui';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/react';
 
