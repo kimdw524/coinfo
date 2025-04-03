@@ -1,7 +1,6 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import { theme } from './theme.css';
-import '../styles/globalStyle.css';
 
 export const darkTheme = createTheme(theme, {
   borderRadius: '4px',

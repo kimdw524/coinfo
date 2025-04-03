@@ -1,0 +1,8 @@
+{
+  "testEnvironment": "jsdom",
+  "setupFilesAfterEnv": ["<rootDir>/jest.setup.js"],
+  "transform": {
+    "\\.css\\.ts$": "@vanilla-extract/jest-transform",
+    "^.+\\.[t|j]sx?$": "babel-jest"
+  }
+}
