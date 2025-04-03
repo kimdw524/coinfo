@@ -1,6 +1,6 @@
-import { darkTheme, lightTheme } from '@repo/ui';
-import { withThemeByClassName } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/react';
+
+import { withTheme } from './decorators/withTheme';
 
 const preview: Preview = {
   parameters: {
@@ -11,15 +11,25 @@ const preview: Preview = {
       },
     },
   },
-  decorators: [
-    withThemeByClassName({
-      themes: {
-        light: lightTheme,
-        dark: darkTheme,
-      },
-      defaultTheme: 'light',
-    }),
-  ],
+  decorators: [withTheme],
+};
+
+export const globalTypes = {
+  theme: {
+    name: 'Theme',
+    description: 'Theme',
+    defaultValue: 'multi',
+    toolbar: {
+      icon: 'circlehollow',
+      items: [
+        { value: 'light', icon: 'circlehollow', title: 'Light Theme' },
+        { value: 'dark', icon: 'circle', title: 'Dark Theme' },
+        { value: 'multi', icon: 'grid', title: 'Multi' },
+      ],
+      showName: true,
+      dynamicTitle: true,
+    },
+  },
 };
 
 export default preview;
