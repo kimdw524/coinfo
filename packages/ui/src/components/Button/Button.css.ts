@@ -14,10 +14,6 @@ const semanticColors = semanticColor.reduce(
       ':hover': {
         backgroundColor: `hsl(${theme.color[color]} / .85)`,
       },
-
-      '::before': {
-        border: `1px solid hsl(${theme.color[`${color}-foreground`]} / .3)`,
-      },
     }),
   }),
   {} as Record<(typeof semanticColor)[number], string>,
@@ -32,10 +28,6 @@ const scaleColors = Object.entries(color).reduce(
 
       ':hover': {
         backgroundColor: `hsl(${value[500]} / .85)`,
-      },
-
-      '::before': {
-        border: `1px solid hsl(${theme.color.border} / .3)`,
       },
     }),
   }),
@@ -74,6 +66,7 @@ export const button = recipe({
       content: '',
       inset: '0 0 0 0',
       position: 'absolute',
+      border: `1px solid hsl(${theme.color.foreground} / .3)`,
       borderRadius: 'inherit',
       boxShadow: `0 0 4px 2px hsl(${theme.color.foreground} / .2)`,
       opacity: '0',
