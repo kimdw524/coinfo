@@ -20,6 +20,7 @@ const meta = {
     },
 
     pulse: {
+      description: 'pulse animation',
       control: 'boolean',
     },
 
@@ -27,7 +28,7 @@ const meta = {
       control: 'boolean',
     },
   },
-  args: {},
+  args: { children: 'Button', color: 'primary', size: 'md', pulse: false, disabled: false },
 } satisfies Meta<typeof Button>;
 
 export default meta;
