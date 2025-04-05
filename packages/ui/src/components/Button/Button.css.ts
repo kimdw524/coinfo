@@ -12,7 +12,7 @@ const semanticColors = semanticColor.reduce(
       color: `rgb(${theme.color[`${color}-foreground`]})`,
 
       ':hover': {
-        backgroundColor: `rgba(${theme.color[color]}, 0.85)`,
+        backgroundColor: `color-mix(in srgb, rgb(${theme.color[color]}) 80%, rgb(${theme.color.background}) 20%)`,
       },
     }),
   }),
@@ -27,7 +27,7 @@ const scaleColors = Object.entries(color).reduce(
       color: `rgb(${theme.color.background})`,
 
       ':hover': {
-        backgroundColor: `rgba(${value[500]}, 0.85)`,
+        backgroundColor: `color-mix(in srgb, rgb(${value[500]}) 80%, rgb(${theme.color.background}) 20%)`,
       },
     }),
   }),
