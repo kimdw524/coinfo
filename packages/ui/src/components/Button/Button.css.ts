@@ -8,11 +8,11 @@ const semanticColors = semanticColor.reduce(
   (prev, color) => ({
     ...prev,
     [color]: style({
-      backgroundColor: `hsl(${theme.color[color]})`,
-      color: `hsl(${theme.color[`${color}-foreground`]})`,
+      backgroundColor: `rgb(${theme.color[color]})`,
+      color: `rgb(${theme.color[`${color}-foreground`]})`,
 
       ':hover': {
-        backgroundColor: `hsl(${theme.color[color]} / .85)`,
+        backgroundColor: `rgba(${theme.color[color]}, 0.85)`,
       },
     }),
   }),
@@ -23,11 +23,11 @@ const scaleColors = Object.entries(color).reduce(
   (prev, [key, value]) => ({
     ...prev,
     [key]: style({
-      backgroundColor: `hsl(${value[500]})`,
-      color: `hsl(${theme.color.background})`,
+      backgroundColor: `rgb(${value[500]})`,
+      color: `rgb(${theme.color.background})`,
 
       ':hover': {
-        backgroundColor: `hsl(${value[500]} / .85)`,
+        backgroundColor: `rgba(${value[500]}, 0.85)`,
       },
     }),
   }),
@@ -57,8 +57,8 @@ export const button = recipe({
     userSelect: 'none',
 
     ':disabled': {
-      backgroundColor: `hsl(${theme.color.muted})`,
-      color: `hsl(${theme.color['muted-foreground']})`,
+      backgroundColor: `rgb(${theme.color.muted})`,
+      color: `rgb(${theme.color['muted-foreground']})`,
       cursor: 'default',
     },
 
@@ -66,9 +66,9 @@ export const button = recipe({
       content: '',
       inset: '0 0 0 0',
       position: 'absolute',
-      border: `1px solid hsl(${theme.color.foreground} / .3)`,
+      border: `1px solid rgba(${theme.color.foreground}, 0.3)`,
       borderRadius: 'inherit',
-      boxShadow: `0 0 4px 2px hsl(${theme.color.foreground} / .2)`,
+      boxShadow: `0 0 4px 2px rgba(${theme.color.foreground}, 0.2)`,
       opacity: '0',
       transition: 'opacity 0.1s ease',
     },
