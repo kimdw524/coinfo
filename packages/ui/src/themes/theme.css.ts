@@ -2,16 +2,14 @@ import { createThemeContract } from '@vanilla-extract/css';
 
 import { semanticColor } from '#tokens';
 
-const semanticColors: Record<(typeof semanticColor)[number] | `${(typeof semanticColor)[number]}-foreground`, null> = {
-  primary: null,
-  'primary-foreground': null,
-  secondary: null,
-  'secondary-foreground': null,
-  muted: null,
-  'muted-foreground': null,
-  accent: null,
-  'accent-foreground': null,
-};
+const semanticColors = semanticColor.reduce(
+  (prev, current) => ({
+    ...prev,
+    [current]: null,
+    [`${current}-foreground`]: null,
+  }),
+  {},
+) as Record<(typeof semanticColor)[number] | `${(typeof semanticColor)[number]}-foreground`, null>;
 
 export const theme = createThemeContract({
   borderRadius: null,

@@ -1,1 +1,1 @@
-export const semanticColor = ['primary', 'secondary', 'muted', 'accent'] as const;
+export const semanticColor = ['primary', 'secondary', 'muted', 'accent', 'card'] as const;

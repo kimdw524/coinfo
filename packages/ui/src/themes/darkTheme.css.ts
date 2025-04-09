@@ -16,5 +16,7 @@ export const darkTheme = createTheme(theme, {
     accent: '30, 36, 44',
     'accent-foreground': '186, 212, 255',
     border: '30, 36, 44',
+    card: '16, 22, 42',
+    'card-foreground': '186, 212, 255',
   },
 });

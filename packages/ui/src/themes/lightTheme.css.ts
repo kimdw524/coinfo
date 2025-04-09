@@ -16,5 +16,7 @@ export const lightTheme = createTheme(theme, {
     accent: '234, 239, 245',
     'accent-foreground': '32, 32, 33',
     border: '203, 213, 225',
+    card: '255, 255, 255',
+    'card-foreground': '10, 10, 11',
   },
 });
