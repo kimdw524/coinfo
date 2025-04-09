@@ -50,31 +50,40 @@ export const button = recipe({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
+
     border: '0',
     borderRadius: theme.borderRadius,
-    cursor: 'pointer',
+
     transition: 'all 0.2s ease',
+
+    cursor: 'pointer',
     userSelect: 'none',
 
     ':disabled': {
       backgroundColor: `rgb(${theme.color.muted})`,
+
       color: `rgb(${theme.color['muted-foreground']})`,
+
       cursor: 'default',
     },
 
     '::before': {
       content: '',
+
       inset: '0 0 0 0',
       position: 'absolute',
+
       border: `1px solid rgba(${theme.color.foreground}, 0.3)`,
       borderRadius: 'inherit',
+
       boxShadow: `0 0 4px 2px rgba(${theme.color.foreground}, 0.2)`,
+
       opacity: '0',
       transition: 'opacity 0.1s ease',
     },
 
     selectors: {
-      ':not(:disabled):active&::before': {
+      '&:not(:disabled):active::before': {
         opacity: '1',
       },
     },
@@ -112,8 +121,10 @@ export const button = recipe({
           content: '',
           position: 'absolute',
           inset: '0',
+
           background: 'linear-gradient(90deg, transparent 30%,#ffffff33 65%, transparent 100%)',
           backgroundSize: '300% 100%',
+
           animation: `${pulse} 5s linear 0s infinite`,
         },
       },
