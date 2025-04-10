@@ -5,6 +5,8 @@ import { theme } from '#themes';
 export const cardInteraction = style({
   position: 'relative',
 
+  height: '100%',
+
   cursor: 'pointer',
   userSelect: 'none',
 
