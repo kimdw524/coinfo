@@ -1,18 +1,19 @@
-import { keyframes, style } from '@vanilla-extract/css';
+import { createVar, keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { theme } from '#themes';
 import { color, semanticColor } from '#tokens';
 
+const backgroundVar = createVar();
+const foregroundVar = createVar();
+
 const semanticColors = semanticColor.reduce(
   (prev, color) => ({
     ...prev,
     [color]: style({
-      backgroundColor: `rgb(${theme.color[color]})`,
-      color: `rgb(${theme.color[`${color}-foreground`]})`,
-
-      ':hover': {
-        backgroundColor: `color-mix(in srgb, rgb(${theme.color[color]}) 80%, rgb(${theme.color.background}) 20%)`,
+      vars: {
+        [backgroundVar]: theme.color[color],
+        [foregroundVar]: theme.color[`${color}-foreground`],
       },
     }),
   }),
@@ -23,11 +24,9 @@ const scaleColors = Object.entries(color).reduce(
   (prev, [key, value]) => ({
     ...prev,
     [key]: style({
-      backgroundColor: `rgb(${value[500]})`,
-      color: `rgb(${theme.color.background})`,
-
-      ':hover': {
-        backgroundColor: `color-mix(in srgb, rgb(${value[500]}) 80%, rgb(${theme.color.background}) 20%)`,
+      vars: {
+        [backgroundVar]: value[500],
+        [foregroundVar]: theme.color.background,
       },
     }),
   }),
@@ -58,35 +57,6 @@ export const button = recipe({
 
     cursor: 'pointer',
     userSelect: 'none',
-
-    ':disabled': {
-      backgroundColor: `rgb(${theme.color.muted})`,
-
-      color: `rgb(${theme.color['muted-foreground']})`,
-
-      cursor: 'default',
-    },
-
-    '::before': {
-      content: '',
-
-      inset: '0 0 0 0',
-      position: 'absolute',
-
-      border: `1px solid rgba(${theme.color.foreground}, 0.3)`,
-      borderRadius: 'inherit',
-
-      boxShadow: `0 0 4px 2px rgba(${theme.color.foreground}, 0.2)`,
-
-      opacity: '0',
-      transition: 'opacity 0.1s ease',
-    },
-
-    selectors: {
-      '&:not(:disabled):active::before': {
-        opacity: '1',
-      },
-    },
   },
 
   variants: {
@@ -112,6 +82,64 @@ export const button = recipe({
         height: '2.75rem',
         padding: '0 1rem',
         fontSize: '1.125rem',
+      },
+    },
+
+    variant: {
+      contained: {
+        backgroundColor: `rgb(${backgroundVar})`,
+        color: `rgb(${foregroundVar})`,
+
+        ':hover': {
+          backgroundColor: `color-mix(in srgb, rgb(${backgroundVar}) 80%, rgb(${theme.color.background}) 20%)`,
+        },
+
+        ':disabled': {
+          backgroundColor: `rgb(${theme.color.muted})`,
+
+          color: `rgb(${theme.color['muted-foreground']})`,
+
+          cursor: 'default',
+        },
+
+        '::before': {
+          content: '',
+
+          inset: '0 0 0 0',
+          position: 'absolute',
+
+          border: `1px solid rgba(${theme.color.foreground}, 0.3)`,
+          borderRadius: 'inherit',
+
+          boxShadow: `0 0 4px 2px rgba(${theme.color.foreground}, 0.2)`,
+
+          opacity: '0',
+          transition: 'opacity 0.1s ease',
+        },
+
+        selectors: {
+          '&:not(:disabled):active::before': {
+            opacity: '1',
+          },
+        },
+      },
+
+      ghost: {
+        background: 'transparent',
+
+        color: `rgb(${theme.color.foreground})`,
+
+        ':hover': {
+          backgroundColor: `color-mix(in srgb, rgb(${backgroundVar}) 80%, rgb(${theme.color.background}) 20%)`,
+
+          color: `rgb(${foregroundVar})`,
+        },
+
+        ':disabled': {
+          color: `rgb(${theme.color['muted-foreground']})`,
+
+          cursor: 'default',
+        },
       },
     },
 

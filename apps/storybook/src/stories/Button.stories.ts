@@ -14,6 +14,11 @@ const meta = {
       options: Object.keys(buttonCss.button.classNames.variants.color),
     },
 
+    variant: {
+      control: 'select',
+      options: Object.keys(buttonCss.button.classNames.variants.variant),
+    },
+
     size: {
       control: 'radio',
       options: Object.keys(buttonCss.button.classNames.variants.size),

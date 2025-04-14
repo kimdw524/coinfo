@@ -6,9 +6,16 @@ import * as s from './Button.css';
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & RecipeVariants<typeof s.button>;
 
-export const Button = ({ children, color = 'primary', size = 'md', pulse = false, ...props }: ButtonProps) => {
+export const Button = ({
+  children,
+  color = 'primary',
+  size = 'md',
+  variant = 'contained',
+  pulse = false,
+  ...props
+}: ButtonProps) => {
   return (
-    <button className={s.button({ color, size, pulse })} {...props}>
+    <button className={s.button({ color, size, variant, pulse })} {...props}>
       {children}
     </button>
   );
