@@ -49,6 +49,7 @@ export const button = recipe({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
+    overflow: 'hidden',
 
     border: '0',
     borderRadius: theme.borderRadius,
@@ -90,37 +91,12 @@ export const button = recipe({
         backgroundColor: `rgb(${backgroundVar})`,
         color: `rgb(${foregroundVar})`,
 
-        ':hover': {
-          backgroundColor: `color-mix(in srgb, rgb(${backgroundVar}) 80%, rgb(${theme.color.background}) 20%)`,
-        },
-
         ':disabled': {
           backgroundColor: `rgb(${theme.color.muted})`,
 
           color: `rgb(${theme.color['muted-foreground']})`,
 
           cursor: 'default',
-        },
-
-        '::before': {
-          content: '',
-
-          inset: '0 0 0 0',
-          position: 'absolute',
-
-          border: `1px solid rgba(${theme.color.foreground}, 0.3)`,
-          borderRadius: 'inherit',
-
-          boxShadow: `0 0 4px 2px rgba(${theme.color.foreground}, 0.2)`,
-
-          opacity: '0',
-          transition: 'opacity 0.1s ease',
-        },
-
-        selectors: {
-          '&:not(:disabled):active::before': {
-            opacity: '1',
-          },
         },
       },
 

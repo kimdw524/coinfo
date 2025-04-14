@@ -1,6 +1,10 @@
+'use client';
+
 import { ButtonHTMLAttributes } from 'react';
 
 import { RecipeVariants } from '@vanilla-extract/recipes';
+
+import { useRipple } from '#hooks';
 
 import * as s from './Button.css';
 
@@ -14,9 +18,12 @@ export const Button = ({
   pulse = false,
   ...props
 }: ButtonProps) => {
+  const { ref, ripple } = useRipple<HTMLButtonElement>();
+
   return (
-    <button className={s.button({ color, size, variant, pulse })} {...props}>
+    <button className={s.button({ color, size, variant, pulse })} {...props} ref={ref}>
       {children}
+      {ripple}
     </button>
   );
 };
