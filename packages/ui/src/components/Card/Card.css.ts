@@ -42,6 +42,10 @@ export const card = recipe({
       [`&:has(${cardInteraction}:hover)`]: {
         borderColor: `color-mix(in srgb, rgb(${theme.color.primary}) 30%, rgb(${theme.color.border}) 70%)`,
       },
+
+      [`&:has(${cardInteraction}:active)`]: {
+        borderColor: `color-mix(in srgb, rgb(${theme.color.primary}) 60%, rgb(${theme.color.border}) 40%)`,
+      },
     },
   },
   variants: {

@@ -19,7 +19,7 @@ describe('Card 컴포넌트', () => {
     expect(screen.getByText('CardInteraction')).toBeInTheDocument();
   });
 
-  it('Card를 클릭하면 onClick이 호출되어야 한다', () => {
+  it('CardInteraction을 클릭하면 onClick이 호출되어야 한다', () => {
     const handleClick = jest.fn();
     render(
       <Card onClick={handleClick}>
