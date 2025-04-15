@@ -106,7 +106,7 @@ export const button = recipe({
         color: `rgb(${theme.color.foreground})`,
 
         ':hover': {
-          backgroundColor: `color-mix(in srgb, rgb(${backgroundVar}) 80%, rgb(${theme.color.background}) 20%)`,
+          backgroundColor: `rgba(${backgroundVar}, 0.8)`,
 
           color: `rgb(${foregroundVar})`,
         },
