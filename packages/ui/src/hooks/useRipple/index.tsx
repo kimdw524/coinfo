@@ -23,6 +23,11 @@ export const useRipple = <T extends HTMLElement>() => {
       return;
     }
 
+    const fadeOut = () => {
+      ripple.style.transition = 'opacity 300ms ease';
+      ripple.className = s.ripple({ fadeIn: false });
+    };
+
     const handleMouseDown = (e: MouseEvent | TouchEvent) => {
       e.preventDefault();
 
@@ -73,7 +78,7 @@ export const useRipple = <T extends HTMLElement>() => {
       isMouseDown = false;
 
       if (isTransitionEnd) {
-        ripple.className = s.ripple({ fadeIn: false });
+        fadeOut();
       }
     };
 
@@ -85,7 +90,7 @@ export const useRipple = <T extends HTMLElement>() => {
       isTransitionEnd = true;
 
       if (!isMouseDown) {
-        ripple.className = s.ripple({ fadeIn: false });
+        fadeOut();
       }
     };
 
