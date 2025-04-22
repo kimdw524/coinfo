@@ -10,23 +10,13 @@ export const useRipple = <T extends HTMLElement>() => {
     const element = ref.current;
     const ripple = rippleRef.current;
 
-    if (!ripple) {
-      return;
-    }
-
-    ripple.className = s.ripple({ fadeIn: false });
-
-    let isMouseDown = false,
+    let isFadeIn = false,
+      isMouseDown = false,
       isTransitionEnd = true;
 
-    if (!element) {
+    if (!ripple || !element) {
       return;
     }
-
-    const fadeOut = () => {
-      ripple.style.transition = 'opacity 300ms ease';
-      ripple.className = s.ripple({ fadeIn: false });
-    };
 
     const handleMouseDown = (e: MouseEvent | TouchEvent) => {
       e.preventDefault();
@@ -47,27 +37,25 @@ export const useRipple = <T extends HTMLElement>() => {
         y = (e.touches[0]?.clientY || 0) - rect.top;
       }
 
-      const initialSize = 4,
-        scale = Math.max(
-          element.clientWidth + Math.abs(element.clientWidth - x * 2),
-          element.clientHeight + Math.abs(element.clientHeight - y * 2),
-        );
+      const width = element.clientWidth / 2 + Math.abs(element.clientWidth / 2 - x),
+        height = element.clientHeight / 2 + Math.abs(element.clientHeight / 2 - y);
+      const size = Math.round(Math.sqrt(width ** 2 + height ** 2) * 2);
 
-      const duration = `${Math.min(600, 100 + scale * 1.25)}ms`;
-
-      isMouseDown = true;
-      isTransitionEnd = false;
-
+      ripple.style.width = `${size}px`;
+      ripple.style.height = `${size}px`;
       ripple.style.left = `${x}px`;
       ripple.style.top = `${y}px`;
-      ripple.style.transform = 'scale(1)';
-      ripple.style.transition = `opacity ${duration} ease`;
+
+      ripple.style.boxShadow = `${s.colorVar} 0 0 ${size / 10}px ${size / 10}px`;
+      ripple.className = s.ripple({ animation: false });
       //eslint-disable-next-line
       ripple.offsetTop;
-      ripple.style.transition = `opacity ${duration} ease, transform ${duration} ease`;
-      ripple.style.transform = `scale(${(scale / initialSize + 1) * 1.415})`;
+      ripple.className = s.ripple({ animation: true });
+      ripple.style.opacity = '1';
 
-      ripple.className = s.ripple({ fadeIn: true });
+      isFadeIn = true;
+      isMouseDown = true;
+      isTransitionEnd = false;
     };
 
     const handleMouseUp = (e: MouseEvent | TouchEvent) => {
@@ -75,22 +63,26 @@ export const useRipple = <T extends HTMLElement>() => {
         return;
       }
 
-      isMouseDown = false;
-
-      if (isTransitionEnd) {
-        fadeOut();
+      if (!isFadeIn) {
+        ripple.style.opacity = '0';
+        isFadeIn = false;
       }
+
+      isMouseDown = false;
     };
 
     const handleTransitionEnd = (e: TransitionEvent) => {
-      if (e.propertyName !== 'transform') {
+      if (e.propertyName === 'opacity' && isFadeIn) {
+        if (!isMouseDown) {
+          ripple.style.opacity = '0';
+        }
+
+        isFadeIn = false;
         return;
       }
 
-      isTransitionEnd = true;
-
-      if (!isMouseDown) {
-        fadeOut();
+      if (e.propertyName === 'transform' && !isFadeIn) {
+        isTransitionEnd = true;
       }
     };
 
@@ -114,7 +106,7 @@ export const useRipple = <T extends HTMLElement>() => {
   return useMemo(
     () => ({
       ref,
-      ripple: <div className={s.ripple({ fadeIn: false })} ref={rippleRef} />,
+      ripple: <div ref={rippleRef} className={s.ripple({ animation: false })} />,
     }),
     [ref, rippleRef],
   );
