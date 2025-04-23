@@ -19,8 +19,6 @@ export const useRipple = <T extends HTMLElement>() => {
     }
 
     const handleMouseDown = (e: MouseEvent | TouchEvent) => {
-      e.preventDefault();
-
       if ((e instanceof MouseEvent && e.button !== 0) || !ripple || !isTransitionEnd) {
         return;
       }
