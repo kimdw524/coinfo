@@ -18,22 +18,13 @@ export const useRipple = <T extends HTMLElement>() => {
       return;
     }
 
-    const handleMouseDown = (e: MouseEvent | TouchEvent) => {
-      if ((e instanceof MouseEvent && e.button !== 0) || !ripple || !isTransitionEnd) {
+    const handleMouseDown = (e: PointerEvent) => {
+      if (e.button !== 0 || !ripple || !isTransitionEnd) {
         return;
       }
 
-      let x, y;
-
-      if (e instanceof MouseEvent) {
-        x = e.offsetX;
+      const x = e.offsetX,
         y = e.offsetY;
-      } else {
-        const rect = element.getBoundingClientRect();
-
-        x = (e.touches[0]?.clientX || 0) - rect.left;
-        y = (e.touches[0]?.clientY || 0) - rect.top;
-      }
 
       const width = element.clientWidth / 2 + Math.abs(element.clientWidth / 2 - x),
         height = element.clientHeight / 2 + Math.abs(element.clientHeight / 2 - y);
@@ -56,8 +47,8 @@ export const useRipple = <T extends HTMLElement>() => {
       isTransitionEnd = false;
     };
 
-    const handleMouseUp = (e: MouseEvent | TouchEvent) => {
-      if ((e instanceof MouseEvent && e.button !== 0) || !isMouseDown) {
+    const handleMouseUp = (e: PointerEvent) => {
+      if (e.button !== 0 || !isMouseDown) {
         return;
       }
 
@@ -84,20 +75,20 @@ export const useRipple = <T extends HTMLElement>() => {
       }
     };
 
-    element.addEventListener('mousedown', handleMouseDown);
-    element.addEventListener('touchstart', handleMouseDown);
+    element.addEventListener('pointerdown', handleMouseDown);
+    // element.addEventListener('touchstart', handleMouseDown);
     ripple.addEventListener('transitionend', handleTransitionEnd);
-    document.addEventListener('touchend', handleMouseUp);
-    document.addEventListener('touchcancel', handleMouseUp);
-    document.addEventListener('mouseup', handleMouseUp);
+    document.addEventListener('pointerup', handleMouseUp);
+    document.addEventListener('pointerleave', handleMouseUp);
+    // document.addEventListener('mouseup', handleMouseUp);
 
     return () => {
-      element.removeEventListener('mousedown', handleMouseDown);
-      element.removeEventListener('touchstart', handleMouseDown);
+      element.removeEventListener('pointerdown', handleMouseDown);
+      // element.removeEventListener('touchstart', handleMouseDown);
       ripple.removeEventListener('transitionend', handleTransitionEnd);
-      document.removeEventListener('touchend', handleMouseUp);
-      document.removeEventListener('touchcancel', handleMouseUp);
-      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('pointerup', handleMouseUp);
+      document.removeEventListener('pointerleave', handleMouseUp);
+      // document.removeEventListener('mouseup', handleMouseUp);
     };
   }, [ref]);
 
