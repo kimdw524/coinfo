@@ -47,4 +47,4 @@ Create a `postcss.config.json` file in your project root and add the following:
 }
 ```
 
--If you're using Next.js, please refer to [Next.js PostCSS Configuring](https://nextjs.org/docs/pages/building-your-application/configuring/post-css).
+- If you're using Next.js, please refer to [Next.js PostCSS Configuring](https://nextjs.org/docs/pages/building-your-application/configuring/post-css).
