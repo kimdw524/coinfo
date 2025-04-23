@@ -12,8 +12,4 @@ export const cardInteraction = style({
 
   cursor: 'pointer',
   userSelect: 'none',
-
-  ':hover': {
-    backgroundColor: `rgba(${theme.color.accent}, 0.33)`,
-  },
 });
