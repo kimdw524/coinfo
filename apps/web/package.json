@@ -18,12 +18,15 @@
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
+    "@repo/postcss-hover-fallback": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^22.13.10",
     "@types/react": "19.0.10",
     "@types/react-dom": "19.0.4",
     "@vanilla-extract/next-plugin": "^2.4.10",
     "eslint": "^9.22.0",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-preset-env": "^10.1.6",
     "typescript": "5.8.2"
   },
   "lint-staged": {
