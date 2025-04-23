@@ -7,7 +7,7 @@ A **PostCSS plugin** that adds touch-friendly fallbacks for `:hover` styles.
 
 ## Example
 
-### Before:
+### Before
 
 ```css
 .button:hover {
@@ -15,7 +15,7 @@ A **PostCSS plugin** that adds touch-friendly fallbacks for `:hover` styles.
 }
 ```
 
-### After:
+### After
 
 ```css
 @media (hover: hover) and (pointer: fine) {
@@ -39,9 +39,12 @@ pnpm add -D postcss-hover-fallback
 
 ## Usage
 
+Create a `postcss.config.json` file in your project root and add the following:
+
 ```json
-// postcss.config.json
 {
   "plugins": ["postcss-hover-fallback"]
 }
 ```
+
+-If you're using Next.js, please refer to [Next.js PostCSS Configuring](https://nextjs.org/docs/pages/building-your-application/configuring/post-css).
