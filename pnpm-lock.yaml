@@ -111,6 +111,12 @@ importers:
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@repo/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
+      jotai:
+        specifier: ^2.12.3
+        version: 2.12.3(@types/react@19.0.10)(react@19.0.0)
       next:
         specifier: ^15.2.1
         version: 15.2.1(@babel/core@7.26.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -191,15 +197,16 @@ importers:
         specifier: ^8.26.0
         version: 8.26.0(eslint@9.22.0)(typescript@5.8.2)
 
-  packages/postcss-hover-fallback: {}
+  packages/postcss-hover-fallback:
+    dependencies:
+      postcss:
+        specifier: ^8.1.4
+        version: 8.5.3
 
   packages/typescript-config: {}
 
   packages/ui:
     dependencies:
-      '@repo/utils':
-        specifier: workspace:*
-        version: link:../utils
       '@vanilla-extract/css':
         specifier: ^1.17.1
         version: 1.17.1
@@ -3908,6 +3915,18 @@ packages:
       node-notifier: ^8.0.1 || ^9.0.0 || ^10.0.0
     peerDependenciesMeta:
       node-notifier:
+        optional: true
+
+  jotai@2.12.3:
+    resolution: {integrity: sha512-DpoddSkmPGXMFtdfnoIHfueFeGP643nqYUWC6REjUcME+PG2UkAtYnLbffRDw3OURI9ZUTcRWkRGLsOvxuWMCg==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=17.0.0'
+      react: '>=17.0.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react:
         optional: true
 
   js-tokens@4.0.0:
@@ -10030,6 +10049,11 @@ snapshots:
       - babel-plugin-macros
       - supports-color
       - ts-node
+
+  jotai@2.12.3(@types/react@19.0.10)(react@19.0.0):
+    optionalDependencies:
+      '@types/react': 19.0.10
+      react: 19.0.0
 
   js-tokens@4.0.0: {}
 

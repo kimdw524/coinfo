@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@repo/ui": "workspace:*",
+    "@repo/utils": "workspace:*",
+    "jotai": "^2.12.3",
     "next": "^15.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
