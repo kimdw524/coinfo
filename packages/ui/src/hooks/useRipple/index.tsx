@@ -18,7 +18,7 @@ export const useRipple = <T extends HTMLElement>() => {
       return;
     }
 
-    const handleMouseDown = (e: PointerEvent) => {
+    const handlePointerDown = (e: PointerEvent) => {
       if (e.button !== 0 || !ripple || !isTransitionEnd) {
         return;
       }
@@ -47,8 +47,8 @@ export const useRipple = <T extends HTMLElement>() => {
       isTransitionEnd = false;
     };
 
-    const handleMouseUp = (e: PointerEvent) => {
-      if (e.button !== 0 || !isMouseDown) {
+    const handlePointerUp = (e: PointerEvent) => {
+      if (!isMouseDown) {
         return;
       }
 
@@ -75,20 +75,16 @@ export const useRipple = <T extends HTMLElement>() => {
       }
     };
 
-    element.addEventListener('pointerdown', handleMouseDown);
-    // element.addEventListener('touchstart', handleMouseDown);
+    element.addEventListener('pointerdown', handlePointerDown);
+    element.addEventListener('pointerup', handlePointerUp);
+    element.addEventListener('pointerleave', handlePointerUp);
     ripple.addEventListener('transitionend', handleTransitionEnd);
-    document.addEventListener('pointerup', handleMouseUp);
-    document.addEventListener('pointerleave', handleMouseUp);
-    // document.addEventListener('mouseup', handleMouseUp);
 
     return () => {
-      element.removeEventListener('pointerdown', handleMouseDown);
-      // element.removeEventListener('touchstart', handleMouseDown);
+      element.removeEventListener('pointerdown', handlePointerDown);
+      element.removeEventListener('pointerup', handlePointerUp);
+      element.removeEventListener('pointerleave', handlePointerUp);
       ripple.removeEventListener('transitionend', handleTransitionEnd);
-      document.removeEventListener('pointerup', handleMouseUp);
-      document.removeEventListener('pointerleave', handleMouseUp);
-      // document.removeEventListener('mouseup', handleMouseUp);
     };
   }, [ref]);
 
