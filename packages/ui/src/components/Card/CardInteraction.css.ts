@@ -1,7 +1,5 @@
 import { style } from '@vanilla-extract/css';
 
-import { theme } from '#themes';
-
 export const cardInteraction = style({
   position: 'relative',
   overflow: 'hidden',
