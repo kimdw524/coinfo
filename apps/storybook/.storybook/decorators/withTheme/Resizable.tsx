@@ -12,6 +12,9 @@ export const Resizable = ({ children }: { children: ReactNode }) => {
       return;
     }
 
+    const padding = 64;
+    let init = true;
+
     const observer = new ResizeObserver((entries) => {
       entries.some((entry) => {
         if (entry.target !== container) {
@@ -19,6 +22,14 @@ export const Resizable = ({ children }: { children: ReactNode }) => {
         }
 
         const { width, height } = entry.contentRect;
+
+        if (init) {
+          init = false;
+          container.style.width = `${Math.trunc(width) + padding}px`;
+          container.style.height = `${Math.trunc(height) + padding * 2}px`;
+          return true;
+        }
+
         setSize({ width: Math.trunc(width), height: Math.trunc(height / 2) });
 
         return true;
@@ -37,7 +48,13 @@ export const Resizable = ({ children }: { children: ReactNode }) => {
       <Indicator width={size.width} height={size.height} />
       <div
         ref={containerRef}
-        style={{ display: 'flex', flex: '1 1 auto', flexDirection: 'column', overflow: 'hidden', resize: 'both' }}
+        style={{
+          display: 'flex',
+          flex: '1 1 auto',
+          flexDirection: 'column',
+          overflow: 'hidden',
+          resize: 'both',
+        }}
       >
         {children}
       </div>
