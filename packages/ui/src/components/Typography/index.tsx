@@ -1,11 +1,10 @@
 import { ComponentPropsWithoutRef, CSSProperties, ReactNode } from 'react';
 
-import { RecipeVariants } from '@vanilla-extract/recipes';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
-
-import { theme } from '#themes';
+import { RecipeVariants } from '@vanilla-extract/recipes';
 
 import * as s from './Typography.css';
+import { typographyColor } from './typographyColor';
 
 type TypographyElement = 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
@@ -13,14 +12,14 @@ type TypographyProps<T extends TypographyElement = TypographyElement> = Componen
   RecipeVariants<typeof s.typography> & {
     children: ReactNode;
     as?: T;
-    color?: string;
+    color?: keyof typeof typographyColor;
     style?: CSSProperties;
   };
 
 export const Typography = ({
   children,
   as: Component = 'p',
-  color = `rgb(${theme.color.foreground})`,
+  color = 'foreground',
   size = 'md',
   weight = 'normal',
   ellipsis = false,
@@ -33,7 +32,7 @@ export const Typography = ({
       style={{
         ...style,
         ...assignInlineVars({
-          [s.colorVar]: color,
+          [s.colorVar]: typographyColor[color],
         }),
       }}
       {...props}
@@ -43,4 +42,5 @@ export const Typography = ({
   );
 };
 
+export { typographyColor };
 export { s as typographyCss };
