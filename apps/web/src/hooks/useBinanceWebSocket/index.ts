@@ -19,7 +19,7 @@ const useBinanceWebSocket = () => {
         return;
       }
 
-      const code = data.s.split('USDT')[0];
+      const code = data.s.split('USDT')[0] || '';
 
       return {
         ask_bid: 'ASK',

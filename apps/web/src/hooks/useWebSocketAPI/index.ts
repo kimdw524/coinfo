@@ -2,21 +2,8 @@ import { useCallback, useMemo, useRef } from 'react';
 
 import { useStore } from 'jotai';
 
-import { assetFamily, Market } from '@/atoms/asset';
-import type { AssetDetail } from '@/types/asset';
-
-interface WebSocketEvent {
-  onopen?: WebSocket['onopen'];
-  onclose?: WebSocket['onclose'];
-  onerror?: WebSocket['onerror'];
-}
-
-interface UseWebSocketAPIProps<U> {
-  market: Market;
-  url: string;
-  formatSubscribe: (tickers: string[]) => string;
-  formatUpdate: (data: U) => AssetDetail | undefined | void;
-}
+import { assetFamily } from '@/atoms/asset';
+import { UseWebSocketAPIProps, WebSocketEvent } from '@/hooks/useWebSocketAPI/types';
 
 const useWebSocketAPI = <U>({ market, url, formatSubscribe, formatUpdate }: UseWebSocketAPIProps<U>) => {
   const store = useStore();

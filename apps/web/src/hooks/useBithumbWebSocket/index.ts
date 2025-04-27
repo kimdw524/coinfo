@@ -20,7 +20,7 @@ const useBithumbWebSocket = () => {
       }
 
       const content = data.content;
-      const code = content.symbol.split('_')[0];
+      const code = content.symbol.split('_')[0] || '';
       return {
         ask_bid: 'BID',
         change_price: Number(content.closePrice) - Number(content.openPrice),

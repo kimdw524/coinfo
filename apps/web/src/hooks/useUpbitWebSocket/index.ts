@@ -22,7 +22,7 @@ const useUpbitWebSocket = () => {
       ]);
     },
     formatUpdate(data) {
-      const code = data.code.split('-')[1];
+      const code = data.code.split('-')[1] || '';
 
       return {
         ask_bid: data.ask_bid,
