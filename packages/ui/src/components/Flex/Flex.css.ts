@@ -55,6 +55,12 @@ export const flex = recipe({
       'flex-end': {
         justifyContent: 'flex-end',
       },
+      'space-around': {
+        justifyContent: 'space-around',
+      },
+      'space-between': {
+        justifyContent: 'space-between',
+      },
     },
   },
 });
