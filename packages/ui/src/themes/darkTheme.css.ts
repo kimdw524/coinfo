@@ -1,8 +1,4 @@
-import { createTheme } from '@vanilla-extract/css';
-
-import { theme } from './theme.css';
-
-export const darkTheme = createTheme(theme, {
+export const darkThemeVars = {
   borderRadius: '4px',
   color: {
     background: '10, 10, 18',
@@ -19,4 +15,4 @@ export const darkTheme = createTheme(theme, {
     card: '16, 22, 42',
     'card-foreground': '186, 212, 255',
   },
-});
+};
