@@ -70,7 +70,7 @@ const OverlayProvider = ({
         },
       ]);
 
-      if (option.closeOnBack) {
+      if (option?.closeOnBack) {
         window.history.pushState({}, '', '');
       }
     },

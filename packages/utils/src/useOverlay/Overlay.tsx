@@ -13,7 +13,7 @@ const Overlay = ({
   requestUnmount,
 }: OverlayProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const timerRef = useRef<number>(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const overlayContext = useContext(OverlayContext);
 
@@ -41,25 +41,29 @@ const Overlay = ({
 
     switch (unmountOn) {
       case 'exit': {
-        requestUnmount();
+        if (requestUnmount) {
+          requestUnmount();
+        }
         break;
       }
       case 'transitionEnd': {
-        if (className?.enter) {
+        if (className?.exit) {
           wrapperRef.current.classList.add(className.exit);
         }
         break;
       }
       default: {
         timerRef.current = setTimeout(() => {
-          requestUnmount();
+          if (requestUnmount) {
+            requestUnmount();
+          }
         }, Number(unmountOn));
       }
     }
   }, [wrapperRef, isActive]);
 
   const handleTransitionEnd = (e: React.TransitionEvent) => {
-    if (e.target !== wrapperRef.current || isActive || unmountOn !== 'transitionEnd') {
+    if (e.target !== wrapperRef.current || isActive || unmountOn !== 'transitionEnd' || !requestUnmount) {
       return;
     }
 
