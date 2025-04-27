@@ -84,6 +84,11 @@ export const button = recipe({
         padding: '0 1rem',
         fontSize: '1.125rem',
       },
+
+      icon: {
+        width: '2.5rem',
+        height: '2.5rem',
+      },
     },
 
     variant: {
