@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 
-import { darkTheme, lightTheme, theme } from '@repo/ui';
+import { theme } from '@repo/ui';
 import { ReactRenderer } from '@storybook/react';
 import { type DecoratorFunction } from 'storybook/internal/types';
 
@@ -23,15 +23,15 @@ export const withTheme: DecoratorFunction<ReactRenderer> = (StoryFn, storyContex
     <Resizable>
       {currentTheme === 'multi' ? (
         <>
-          <div className={lightTheme} style={containerStyle}>
+          <div className="light" style={containerStyle}>
             <StoryFn />
           </div>
-          <div className={darkTheme} style={containerStyle}>
+          <div className="dark" style={containerStyle}>
             <StoryFn />
           </div>
         </>
       ) : (
-        <div className={currentTheme === 'light' ? lightTheme : darkTheme}>{<StoryFn />}</div>
+        <div className={currentTheme}>{<StoryFn />}</div>
       )}
     </Resizable>
   );
