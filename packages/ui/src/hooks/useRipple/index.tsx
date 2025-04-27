@@ -86,7 +86,7 @@ export const useRipple = <T extends HTMLElement>() => {
       element.removeEventListener('pointerleave', handlePointerUp);
       ripple.removeEventListener('transitionend', handleTransitionEnd);
     };
-  }, [ref]);
+  }, [ref, rippleRef]);
 
   return useMemo(
     () => ({
