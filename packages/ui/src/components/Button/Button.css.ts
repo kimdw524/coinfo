@@ -1,4 +1,4 @@
-import { createVar, keyframes, style } from '@vanilla-extract/css';
+import { createVar, globalStyle, keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { theme } from '#themes';
@@ -70,24 +70,43 @@ export const button = recipe({
       sm: {
         height: '2.25rem',
         padding: '0 0.75rem',
+
         fontSize: '0.875rem',
       },
 
       md: {
         height: '2.5rem',
         padding: '0 0.875rem',
+
         fontSize: '1rem',
       },
 
       lg: {
         height: '2.75rem',
         padding: '0 1rem',
+
         fontSize: '1.125rem',
       },
 
-      icon: {
+      'icon-sm': {
+        width: '2rem',
+        height: '2rem',
+
+        fontSize: '1rem',
+      },
+
+      'icon-md': {
         width: '2.5rem',
         height: '2.5rem',
+
+        fontSize: '1.25rem',
+      },
+
+      'icon-lg': {
+        width: '3rem',
+        height: '3rem',
+
+        fontSize: '1.5rem',
       },
     },
 
@@ -139,4 +158,9 @@ export const button = recipe({
       },
     },
   },
+});
+
+globalStyle(`${button()} svg`, {
+  width: '1em',
+  height: '1em',
 });

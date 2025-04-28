@@ -8,7 +8,6 @@ import { lightThemeVars } from '../themes/lightTheme.css';
 globalStyle('*', {
   boxSizing: 'border-box',
 
-  color: `rgb(${theme.color.foreground})`,
   fontFamily: 'Pretendard',
   lineHeight: '1',
 
@@ -28,6 +27,8 @@ globalStyle('body', {
   margin: '0',
 
   backgroundColor: `rgb(${theme.color.background})`,
+
+  color: `rgb(${theme.color.foreground})`,
 });
 
 globalStyle('a', {
