@@ -131,7 +131,7 @@ export const button = recipe({
           position: 'absolute',
           inset: '0',
 
-          background: 'linear-gradient(90deg, transparent 30%,#ffffff33 65%, transparent 100%)',
+          background: 'linear-gradient(90deg, transparent 30%, #ffffff33 65%, transparent 100%)',
           backgroundSize: '300% 100%',
 
           animation: `${pulse} 5s linear 0s infinite`,
