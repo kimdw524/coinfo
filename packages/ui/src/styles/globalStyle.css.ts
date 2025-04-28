@@ -10,6 +10,7 @@ globalStyle('*', {
 
   color: `rgb(${theme.color.foreground})`,
   fontFamily: 'Pretendard',
+  lineHeight: '1',
 
   overscrollBehavior: 'none',
   WebkitTapHighlightColor: 'transparent',
