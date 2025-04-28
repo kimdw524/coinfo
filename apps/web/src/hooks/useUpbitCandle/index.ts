@@ -38,7 +38,7 @@ const useUpbitCandle = ({ symbol, timeFrame }: UseUpbitCandleProps) => {
       const result = await fetch(`${API[timeFrame]}&market=KRW-${symbol}`, {
         method: 'GET',
       });
-      const data: CandleData[] = await result.json();
+      const data = (await result.json()) as CandleData[];
       setData(data);
     })();
   }, [symbol, timeFrame]);
