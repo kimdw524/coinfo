@@ -1,5 +1,5 @@
 import { Box } from '@repo/ui';
-import { boxProperties, colorProperties, sprinkles } from '@repo/ui/src/styles';
+import { boxProperties, colorProperties } from '@repo/ui/src/styles';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
@@ -24,6 +24,10 @@ const meta = {
     alignItems: {
       control: 'select',
       options: Object.keys(boxProperties.styles.alignItems.values),
+    },
+    gap: {
+      control: 'select',
+      options: Object.keys(boxProperties.styles.gap.values),
     },
     paddingTop: {
       control: 'select',
