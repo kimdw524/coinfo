@@ -1,4 +1,4 @@
-import { Flex, Typography } from '@repo/ui';
+import { Box, Typography } from '@repo/ui';
 import { PrimitiveAtom, useAtom } from 'jotai';
 
 import { MarketAtom } from '@/atoms/asset';
@@ -26,20 +26,20 @@ const AssetDetail = ({ name, marketAtom }: AssetDetailProps) => {
 
   return (
     <>
-      <Flex alignItems="center" gap="md">
+      <Box flex alignItems="center" gap="md">
         <span>
           <AssetLogo symbol={asset.symbol} width={24} height={24} />
         </span>
         <Typography as="p">{name}</Typography>
-      </Flex>
+      </Box>
       <Typography size="sm" color="muted-foreground">
         {asset.symbol}
       </Typography>
-      <Flex alignItems="flex-end" justifyContent="space-between">
+      <Box flex alignItems="flex-end" justifyContent="space-between">
         <Typography size="md" weight="semiBold">
           {price.toLocaleString()} {asset?.currency_code}
         </Typography>
-        <Flex direction="column" alignItems="flex-end" gap="md" style={{ marginTop: '1rem' }}>
+        <Box flex flexDirection="column" alignItems="flex-end" gap="md" style={{ marginTop: '1rem' }}>
           <Typography size="sm" color={changeColor}>
             {change >= 0 && '+'}
             {change.toLocaleString()}
@@ -48,8 +48,8 @@ const AssetDetail = ({ name, marketAtom }: AssetDetailProps) => {
             {change >= 0 && '+'}
             {Math.round((change / (price - change)) * 10000) / 100}%
           </Typography>
-        </Flex>
-      </Flex>
+        </Box>
+      </Box>
     </>
   );
 };
