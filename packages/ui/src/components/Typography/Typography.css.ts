@@ -1,13 +1,8 @@
-import { createVar } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
-
-export const colorVar = createVar();
 
 export const typography = recipe({
   base: {
     margin: '0',
-
-    color: colorVar,
   },
   variants: {
     size: {

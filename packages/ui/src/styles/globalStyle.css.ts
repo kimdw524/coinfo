@@ -1,9 +1,6 @@
 import { assignVars, globalStyle } from '@vanilla-extract/css';
 
-import { theme } from '#themes';
-
-import { darkThemeVars } from '../themes/darkTheme.css';
-import { lightThemeVars } from '../themes/lightTheme.css';
+import { darkThemeVars, lightThemeVars, theme } from '#themes';
 
 globalStyle('*', {
   boxSizing: 'border-box',

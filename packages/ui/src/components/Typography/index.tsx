@@ -1,10 +1,11 @@
 import { ComponentPropsWithoutRef, CSSProperties, ReactNode } from 'react';
 
-import { assignInlineVars } from '@vanilla-extract/dynamic';
 import { RecipeVariants } from '@vanilla-extract/recipes';
+import clsx from 'clsx';
+
+import { sprinkles, SprinklesProps } from '#styles';
 
 import * as s from './Typography.css';
-import { typographyColor } from './typographyColor';
 
 type TypographyElement = 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
@@ -12,7 +13,7 @@ type TypographyProps<T extends TypographyElement = TypographyElement> = Componen
   RecipeVariants<typeof s.typography> & {
     children: ReactNode;
     as?: T;
-    color?: keyof typeof typographyColor;
+    color?: SprinklesProps['color'];
     style?: CSSProperties;
   };
 
@@ -28,13 +29,8 @@ export const Typography = ({
 }: TypographyProps) => {
   return (
     <Component
-      className={s.typography({ size, weight, ellipsis })}
-      style={{
-        ...style,
-        ...assignInlineVars({
-          [s.colorVar]: typographyColor[color],
-        }),
-      }}
+      className={clsx(s.typography({ size, weight, ellipsis }), sprinkles({ color }))}
+      style={style}
       {...props}
     >
       {children}
@@ -42,5 +38,4 @@ export const Typography = ({
   );
 };
 
-export { typographyColor };
 export { s as typographyCss };

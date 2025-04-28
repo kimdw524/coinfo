@@ -1,4 +1,5 @@
-import { Typography, typographyColor, typographyCss } from '@repo/ui';
+import { Typography, typographyCss } from '@repo/ui';
+import { colorProperties } from '@repo/ui/src/styles';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
@@ -14,7 +15,7 @@ const meta = {
     },
     color: {
       control: 'select',
-      options: Object.keys(typographyColor),
+      options: Object.keys(colorProperties.styles.color.values),
     },
     as: {
       control: 'select',
