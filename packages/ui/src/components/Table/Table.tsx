@@ -8,8 +8,8 @@ export interface TableProps extends React.ComponentProps<'table'> {
   striped?: boolean;
 }
 
-export const Table = forwardRef<HTMLTableElement, TableProps>(({ striped, ...props }: TableProps, ref) => {
-  return <table ref={ref} className={clsx(s.table, striped && s.striped)} {...props} />;
+export const Table = forwardRef<HTMLTableElement, TableProps>(({ striped, className, ...props }: TableProps, ref) => {
+  return <table ref={ref} className={clsx(s.table, striped && s.striped, className)} {...props} />;
 });
 Table.displayName = 'Table';
 

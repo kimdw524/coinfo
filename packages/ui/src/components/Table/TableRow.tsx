@@ -9,8 +9,8 @@ export interface TableRowProps extends React.ComponentProps<'tr'> {
 }
 
 export const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
-  ({ interactive = false, ...props }: TableRowProps, ref) => {
-    return <tr ref={ref} className={clsx(interactive && s.interactive)} {...props} />;
+  ({ interactive = false, className, ...props }: TableRowProps, ref) => {
+    return <tr ref={ref} className={clsx(interactive && s.interactive, className)} {...props} />;
   },
 );
 TableRow.displayName = 'TableRow';
