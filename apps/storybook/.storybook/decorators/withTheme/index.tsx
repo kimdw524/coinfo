@@ -14,6 +14,8 @@ const containerStyle: CSSProperties = {
   height: '100%',
 
   backgroundColor: `rgb(${theme.color.background})`,
+
+  color: `rgb(${theme.color.foreground})`,
 };
 
 export const withTheme: DecoratorFunction<ReactRenderer> = (StoryFn, storyContext) => {
