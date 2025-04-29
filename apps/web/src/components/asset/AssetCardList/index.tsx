@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 
 import AssetCard from '@/components/asset/AssetCard';
-import { AssetCardLoading } from '@/components/asset/AssetCard/loading';
+import AssetCardLoading from '@/components/asset/AssetCard/loading';
 import { currencies } from '@/constants/currencies';
 
 import * as s from './style.css';
