@@ -12,6 +12,8 @@ const shimmer = keyframes({
 });
 
 export const skeleton = style({
+  display: 'inline-block',
+
   borderRadius: theme.borderRadius,
 
   background: `linear-gradient(90deg, rgb(${theme.color.accent}) 30%, rgba(${theme.color.accent}, 0.5) 65%, rgb(${theme.color.accent}) 100%)`,
