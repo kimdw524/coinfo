@@ -35,6 +35,7 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
       marginY,
       backgroundColor,
       color,
+      className,
       ...props
     },
     ref,
@@ -43,6 +44,7 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
       <div
         ref={ref}
         className={clsx(
+          className,
           flex && s.flex,
           sprinkles({
             flexDirection,
