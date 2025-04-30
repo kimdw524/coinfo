@@ -15,7 +15,7 @@ const AssetItemLoading = ({ name, symbol }: AssetItemLoadingProps) => {
   return (
     <TableRow interactive onClick={() => router.push(`/currencies/${symbol}`)}>
       <TableCell>
-        <Box flex alignItems="center" gap="md" marginBottom="sm">
+        <Box flex alignItems="center" gap="md">
           <span>
             <AssetLogo symbol={symbol} width={24} height={24} />
           </span>
@@ -28,16 +28,16 @@ const AssetItemLoading = ({ name, symbol }: AssetItemLoadingProps) => {
         </Box>
       </TableCell>
       <TableCell textAlign="right">
-        <Skeleton width="100px" height="1rem" />
+        <Skeleton width="6.25em" height="1em" />
       </TableCell>
       <TableCell textAlign="right">
         <Box flex flexDirection="column" gap="sm" alignItems="flex-end">
-          <Skeleton width="30px" height="0.75rem" />
-          <Skeleton width="60px" height="1rem" />
+          <Skeleton width="1.875em" height="0.75em" />
+          <Skeleton width="3.75em" height="1em" />
         </Box>
       </TableCell>
       <TableCell textAlign="right">
-        <Skeleton width="50px" height="1rem" />
+        <Skeleton width="3em" height="1em" />
       </TableCell>
     </TableRow>
   );

@@ -27,17 +27,17 @@ const AssetCardLoading = ({ name, symbol }: AssetCardLoadingProps) => {
             <Typography size="sm" color="muted-foreground">
               {symbol}
             </Typography>
-            <Box flex alignItems="flex-end" justifyContent="space-between">
+            <Box flex alignItems="flex-end" justifyContent="space-between" marginTop="lg">
               <Box flex flexDirection="column" gap="md">
                 <Box flex alignItems="center" gap="sm">
                   <Image src={Flag} width={16} height={16} alt="Premium" />
-                  <Skeleton width="30px" height="0.875rem" />
+                  <Skeleton width="2em" height="0.875em" />
                 </Box>
-                <Skeleton width="100px" height="1rem" />
+                <Skeleton width="6.25em" height="1em" />
               </Box>
-              <Box flex flexDirection="column" alignItems="flex-end" gap="md" style={{ marginTop: '1rem' }}>
-                <Skeleton width="30px" height="0.875rem" />
-                <Skeleton width="50px" height="1rem" />
+              <Box flex flexDirection="column" alignItems="flex-end" gap="md">
+                <Skeleton width="2em" height="0.875em" />
+                <Skeleton width="3em" height="1em" />
               </Box>
             </Box>
           </CardContent>

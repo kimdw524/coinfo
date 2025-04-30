@@ -1,18 +1,18 @@
 'use client';
 
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { Box, Card, CardContent, CardInteraction, Typography } from '@repo/ui';
 import { withInViewport } from '@repo/utils';
 import { useAtom } from 'jotai';
 
+import Flag from '@/assets/images/flag-south-korea.webp';
 import { assetFamily } from '@/atoms/asset';
 import AssetLogo from '@/components/asset/AssetLogo';
+import useAssetPremium from '@/hooks/useAssetPremium';
 import useAtomAsync from '@/hooks/useAtomAsync';
 import { getColorByChange } from '@/utils/getColorByChange';
-
-import Flag from '@/assets/images/flag-south-korea.webp';
 
 interface AssetCardProps {
   name: string;
@@ -24,12 +24,20 @@ const AssetCard = ({ name, symbol, ref }: AssetCardProps) => {
   const [marketAtom] = useAtomAsync(assetFamily(symbol));
   const [market] = useAtom(marketAtom!);
   const [asset] = useAtom(Object.values(market)[0]!);
+  const assetPremium = useAssetPremium(market);
 
   const price = asset?.trade_price || 0;
   const change = asset?.change_price || 0;
 
   const changeColor = getColorByChange<React.ComponentProps<typeof Typography>['color']>(
     change,
+    'red-500',
+    'blue-500',
+    'foreground',
+  );
+
+  const premiumColor = getColorByChange<React.ComponentProps<typeof Typography>['color']>(
+    assetPremium || 0,
     'red-500',
     'blue-500',
     'foreground',
@@ -52,9 +60,9 @@ const AssetCard = ({ name, symbol, ref }: AssetCardProps) => {
             <Box flex alignItems="flex-end" justifyContent="space-between" marginTop="lg">
               <Box flex flexDirection="column" gap="md">
                 <Box flex alignItems="center" gap="sm">
-                  <Image src={Flag} width={16} height={16} alt="Premium" />
-                  <Typography size="sm" color={changeColor}>
-                    -
+                  <Image src={Flag} width={16} height={16} alt="Premium" unoptimized />
+                  <Typography size="sm" color={premiumColor}>
+                    {assetPremium === undefined ? '-' : `${Math.round(assetPremium * 100) / 100}%`}
                   </Typography>
                 </Box>
                 <Typography size="md" weight="semiBold">

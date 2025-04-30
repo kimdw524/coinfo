@@ -8,6 +8,7 @@ import { useAtom } from 'jotai';
 
 import { assetFamily } from '@/atoms/asset';
 import AssetLogo from '@/components/asset/AssetLogo';
+import useAssetPremium from '@/hooks/useAssetPremium';
 import useAtomAsync from '@/hooks/useAtomAsync';
 import { getColorByChange } from '@/utils/getColorByChange';
 
@@ -22,6 +23,7 @@ const AssetItem = ({ name, symbol, ref }: AssetItemProps) => {
   const [marketAtom] = useAtomAsync(assetFamily(symbol));
   const [market] = useAtom(marketAtom!);
   const [asset] = useAtom(Object.values(market)[0]!);
+  const assetPremium = useAssetPremium(market);
 
   const price = asset?.trade_price || 0;
   const change = asset?.change_price || 0;
@@ -33,10 +35,17 @@ const AssetItem = ({ name, symbol, ref }: AssetItemProps) => {
     'foreground',
   );
 
+  const premiumColor = getColorByChange<React.ComponentProps<typeof Typography>['color']>(
+    assetPremium || 0,
+    'red-500',
+    'blue-500',
+    'foreground',
+  );
+
   return (
     <TableRow ref={ref} interactive onClick={() => router.push(`/currencies/${symbol}`)}>
       <TableCell>
-        <Box flex alignItems="center" gap="md" marginBottom="sm">
+        <Box flex alignItems="center" gap="md">
           <span>
             <AssetLogo symbol={asset.symbol} width={24} height={24} />
           </span>
@@ -65,7 +74,11 @@ const AssetItem = ({ name, symbol, ref }: AssetItemProps) => {
           </Typography>
         </Box>
       </TableCell>
-      <TableCell textAlign="right">-</TableCell>
+      <TableCell textAlign="right">
+        <Typography color={premiumColor}>
+          {assetPremium === undefined ? '-' : `${Math.round(assetPremium * 100) / 100}%`}
+        </Typography>
+      </TableCell>
     </TableRow>
   );
 };
