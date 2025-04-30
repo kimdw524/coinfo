@@ -7,25 +7,25 @@ export const typography = recipe({
   variants: {
     size: {
       xs: {
-        fontSize: '0.75rem',
+        fontSize: '0.75em',
       },
       sm: {
-        fontSize: '0.875rem',
+        fontSize: '0.875em',
       },
       md: {
-        fontSize: '1rem',
+        fontSize: '1em',
       },
       lg: {
-        fontSize: '1.125rem',
+        fontSize: '1.125em',
       },
       xl: {
-        fontSize: '1.25rem',
+        fontSize: '1.25em',
       },
       '2xl': {
-        fontSize: '1.375rem',
+        fontSize: '1.375em',
       },
       '3xl': {
-        fontSize: '1.5rem',
+        fontSize: '1.5em',
       },
     },
 

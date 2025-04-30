@@ -8,13 +8,13 @@ export const cardContent = recipe({
   variants: {
     padding: {
       sm: {
-        padding: '0.75rem',
+        padding: '0.75em',
       },
       md: {
-        padding: '1rem',
+        padding: '1em',
       },
       lg: {
-        padding: '1.25rem',
+        padding: '1.25em',
       },
     },
   },

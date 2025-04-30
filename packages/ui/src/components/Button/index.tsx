@@ -22,7 +22,7 @@ export const Button = ({
 
   return (
     <button className={s.button({ color, size, variant, pulse })} {...props} ref={ref}>
-      {children}
+      <span className={s.span({ size })}>{children}</span>
       {ripple}
     </button>
   );

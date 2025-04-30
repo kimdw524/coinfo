@@ -6,7 +6,7 @@ import { striped } from './Table.css';
 import { interactive } from './TableRow.css';
 
 export const tableCell = style({
-  padding: '0.5rem',
+  padding: '0.5em',
 
   transition: 'all 0.1s ease',
 

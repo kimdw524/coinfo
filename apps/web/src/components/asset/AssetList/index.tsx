@@ -19,7 +19,13 @@ const AssetList = () => {
       <Box flex justifyContent="flex-end" marginBottom="xl">
         <AssetLayoutSwitch />
       </Box>
-      {assetLayout === 'card' ? <AssetCardList /> : <AssetItemList />}
+      {assetLayout === 'card' ? (
+        <AssetCardList />
+      ) : (
+        <div className={s.itemList}>
+          <AssetItemList />
+        </div>
+      )}
     </Box>
   );
 };

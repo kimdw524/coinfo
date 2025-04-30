@@ -1,4 +1,4 @@
-import { createVar, globalStyle, keyframes, style } from '@vanilla-extract/css';
+import { createVar, globalStyle, keyframes, style, styleVariants } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { theme } from '#themes';
@@ -43,6 +43,36 @@ const pulse = keyframes({
   },
 });
 
+export const span = recipe({
+  variants: {
+    size: {
+      sm: {
+        fontSize: '0.875em',
+      },
+
+      md: {
+        fontSize: '1em',
+      },
+
+      lg: {
+        fontSize: '1.125em',
+      },
+
+      'icon-sm': {
+        fontSize: '1em',
+      },
+
+      'icon-md': {
+        fontSize: '1.25em',
+      },
+
+      'icon-lg': {
+        fontSize: '1.5em',
+      },
+    },
+  },
+});
+
 export const button = recipe({
   base: {
     display: 'inline-flex',
@@ -53,6 +83,8 @@ export const button = recipe({
 
     border: '0',
     borderRadius: theme.borderRadius,
+
+    fontSize: '1em',
 
     transition: 'all 0.2s ease',
 
@@ -68,45 +100,33 @@ export const button = recipe({
 
     size: {
       sm: {
-        height: '2.25rem',
-        padding: '0 0.75rem',
-
-        fontSize: '0.875rem',
+        height: '2.25em',
+        padding: '0 0.75em',
       },
 
       md: {
-        height: '2.5rem',
-        padding: '0 0.875rem',
-
-        fontSize: '1rem',
+        height: '2.5em',
+        padding: '0 0.875em',
       },
 
       lg: {
-        height: '2.75rem',
-        padding: '0 1rem',
-
-        fontSize: '1.125rem',
+        height: '2.75em',
+        padding: '0 1em',
       },
 
       'icon-sm': {
-        width: '2rem',
-        height: '2rem',
-
-        fontSize: '1rem',
+        width: '2em',
+        height: '2em',
       },
 
       'icon-md': {
-        width: '2.5rem',
-        height: '2.5rem',
-
-        fontSize: '1.25rem',
+        width: '2.5em',
+        height: '2.5em',
       },
 
       'icon-lg': {
-        width: '3rem',
-        height: '3rem',
-
-        fontSize: '1.5rem',
+        width: '3em',
+        height: '3em',
       },
     },
 

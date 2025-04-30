@@ -7,7 +7,7 @@ export const navigationBar = recipe({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    gap: '0.5rem',
+    gap: '0.5em',
     position: 'sticky',
     top: '0',
     zIndex: '10',
@@ -25,18 +25,18 @@ export const navigationBar = recipe({
   variants: {
     size: {
       sm: {
-        height: '4rem',
-        padding: '0 0.75rem',
+        height: '4em',
+        padding: '0 0.75em',
       },
 
       md: {
-        height: '5rem',
-        padding: '0 1rem',
+        height: '5em',
+        padding: '0 1em',
       },
 
       lg: {
-        height: '6rem',
-        padding: '0 1.25rem',
+        height: '6em',
+        padding: '0 1.25em',
       },
     },
   },

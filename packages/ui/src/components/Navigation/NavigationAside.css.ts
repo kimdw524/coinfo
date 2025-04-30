@@ -3,7 +3,7 @@ import { style } from '@vanilla-extract/css';
 export const navigationAside = style({
   display: 'flex',
   alignItems: 'center',
-  gap: '0.5rem',
+  gap: '0.5em',
 
   marginLeft: 'auto',
 });

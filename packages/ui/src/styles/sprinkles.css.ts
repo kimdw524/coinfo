@@ -30,10 +30,10 @@ export const colorProperties = defineProperties({
 });
 
 const space = {
-  sm: '0.25rem',
-  md: '0.5rem',
-  lg: '0.75rem',
-  xl: '1rem',
+  sm: '0.25em',
+  md: '0.5em',
+  lg: '0.75em',
+  xl: '1em',
 };
 
 export const boxProperties = defineProperties({

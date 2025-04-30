@@ -11,3 +11,11 @@ export const container = style({
     },
   },
 });
+
+export const itemList = style({
+  '@media': {
+    'screen and (max-width: 480px)': {
+      fontSize: '0.75rem',
+    },
+  },
+});
