@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import { useAtom } from 'jotai';
 import { LayoutGridIcon, Rows3Icon } from 'lucide-react';
 
-import { assetLayoutAtom } from '@/atoms/assetLayout';
+import { assetLayoutAtom } from '@/atoms/assetLayoutAtom';
 import { Box, Button } from '@repo/ui';
 
 const AssetLayoutSwitch = () => {

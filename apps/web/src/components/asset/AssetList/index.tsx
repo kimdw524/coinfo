@@ -4,7 +4,7 @@ import { Box } from '@repo/ui';
 import clsx from 'clsx';
 import { useAtom } from 'jotai';
 
-import { assetLayoutAtom } from '@/atoms/assetLayout';
+import { assetLayoutAtom } from '@/atoms/assetLayoutAtom';
 import AssetCardList from '@/components/asset/AssetCardList';
 import AssetItemList from '@/components/asset/AssetItemList';
 import AssetLayoutSwitch from '@/components/asset/AssetLayoutSwitch';
