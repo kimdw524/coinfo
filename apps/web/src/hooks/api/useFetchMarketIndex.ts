@@ -1,3 +1,6 @@
+import { exchangeRateAtom } from '@/atoms/exchangeRate';
+import { getDefaultStore } from 'jotai';
+import { useEffect } from 'react';
 import useSWR from 'swr';
 
 interface MarketData {
@@ -14,6 +17,13 @@ interface MarketIndexResponse {
 
 const useFetchMarketIndex = () => {
   const { data } = useSWR<MarketIndexResponse>('/api/index', { refreshInterval: 10000, suspense: true });
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const store = getDefaultStore();
+      store.set(exchangeRateAtom, data?.USDKRW.value);
+    }
+  }, [data?.USDKRW.value]);
 
   return data!;
 };

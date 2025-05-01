@@ -2,8 +2,8 @@
 
 import { Box } from '@repo/ui';
 
-import useFetchMarketIndex from '@/hooks/api/useFetchMarketIndex';
 import MarketIndex from '@/components/market/MarketIndex';
+import useFetchMarketIndex from '@/hooks/api/useFetchMarketIndex';
 
 import * as s from './style.css';
 

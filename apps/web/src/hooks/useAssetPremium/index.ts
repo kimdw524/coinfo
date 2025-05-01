@@ -1,9 +1,12 @@
-import { getDefaultStore, PrimitiveAtom } from 'jotai';
+import { getDefaultStore, PrimitiveAtom, useAtom } from 'jotai';
 
 import { Market } from '@/atoms/asset';
 import { AssetDetail } from '@/types/asset';
+import { exchangeRateAtom } from '@/atoms/exchangeRate';
 
 const useAssetPremium = (market: Partial<Record<Market, PrimitiveAtom<AssetDetail>>>): number | undefined => {
+  const [exchangeRate] = useAtom(exchangeRateAtom);
+
   const store = getDefaultStore();
 
   if (typeof window === 'undefined') {
@@ -14,11 +17,11 @@ const useAssetPremium = (market: Partial<Record<Market, PrimitiveAtom<AssetDetai
     const domestic = store.get(market[Market.Upbit]),
       foreign = store.get(market[Market.Binance]);
 
-    if (domestic.trade_price === undefined || foreign.trade_price === undefined) {
+    if (domestic.trade_price === undefined || foreign.trade_price === undefined || exchangeRate === undefined) {
       return;
     }
 
-    return (domestic.trade_price / (foreign.trade_price * 1424) - 1) * 100;
+    return (domestic.trade_price / (foreign.trade_price * exchangeRate) - 1) * 100;
   }
 
   return;
