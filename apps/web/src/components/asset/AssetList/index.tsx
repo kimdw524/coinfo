@@ -1,17 +1,21 @@
 'use client';
 
 import { Box } from '@repo/ui';
-import { useAtom } from 'jotai';
 import clsx from 'clsx';
+import { useAtom } from 'jotai';
 
 import { assetLayoutAtom } from '@/atoms/assetLayout';
 import AssetCardList from '@/components/asset/AssetCardList';
 import AssetItemList from '@/components/asset/AssetItemList';
 import AssetLayoutSwitch from '@/components/asset/AssetLayoutSwitch';
+import { currencies } from '@/constants/currencies';
+import useRealTimePrice from '@/hooks/useRealTimePrice';
 
 import * as s from './style.css';
 
 const AssetList = () => {
+  useRealTimePrice(currencies.map((currency) => currency.symbol));
+
   const [assetLayout] = useAtom(assetLayoutAtom);
 
   return (
