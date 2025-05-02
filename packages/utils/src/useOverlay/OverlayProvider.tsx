@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import Overlay from './Overlay';
 import OverlayContext from './OverlayContext';
+import OverlayIdContext from './OverlayIdContext';
 import type { OverlayProps, OverlayProviderProps, OverlayPush } from './types';
 
 const OverlayProvider = ({
@@ -98,9 +99,9 @@ const OverlayProvider = ({
     <OverlayContext.Provider value={contextValue}>
       {children}
       {overlays.map((overlay) => (
-        <Overlay key={overlay.id} {...overlay}>
-          {overlay.children}
-        </Overlay>
+        <OverlayIdContext.Provider key={overlay.id} value={overlay.id}>
+          <Overlay {...overlay}>{overlay.children}</Overlay>
+        </OverlayIdContext.Provider>
       ))}
     </OverlayContext.Provider>
   );
