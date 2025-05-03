@@ -6,7 +6,6 @@ globalStyle('*', {
   boxSizing: 'border-box',
 
   fontFamily: 'Pretendard',
-  lineHeight: '1',
 
   overscrollBehavior: 'none',
   WebkitTapHighlightColor: 'transparent',
@@ -25,6 +24,7 @@ globalStyle('body', {
 
   backgroundColor: `rgb(${theme.color.background})`,
 
+  lineHeight: '1',
   color: `rgb(${theme.color.foreground})`,
 });
 

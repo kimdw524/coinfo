@@ -25,4 +25,11 @@ export const typography = {
     extrabold: '800',
     black: '900',
   },
+  lineHeight: {
+    xs: 1,
+    sm: 1.25,
+    md: 1.5,
+    lg: 1.75,
+    xl: 2,
+  },
 };

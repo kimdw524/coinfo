@@ -35,6 +35,7 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
       marginY,
       backgroundColor,
       color,
+      lineHeight,
       className,
       ...props
     },
@@ -67,6 +68,7 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
             marginY,
             backgroundColor,
             color,
+            lineHeight,
           }),
         )}
         {...props}

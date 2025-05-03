@@ -1,7 +1,7 @@
 import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 
 import { theme } from '#themes';
-import { color, spacing } from '#tokens';
+import { color, spacing, typography } from '#tokens';
 
 type ColorName = keyof typeof color;
 type ColorScale<C extends ColorName> = keyof (typeof color)[C];
@@ -54,6 +54,12 @@ export const boxProperties = defineProperties({
   },
 });
 
-export const sprinkles = createSprinkles(boxProperties, colorProperties);
+export const typographyProperties = defineProperties({
+  properties: {
+    lineHeight: typography.lineHeight,
+  },
+});
+
+export const sprinkles = createSprinkles(boxProperties, colorProperties, typographyProperties);
 
 export type SprinklesProps = Parameters<typeof sprinkles>[0];
