@@ -1,7 +1,7 @@
 import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 
 import { theme } from '#themes';
-import { color } from '#tokens';
+import { color, spacing } from '#tokens';
 
 type ColorName = keyof typeof color;
 type ColorScale<C extends ColorName> = keyof (typeof color)[C];
@@ -29,27 +29,20 @@ export const colorProperties = defineProperties({
   },
 });
 
-const space = {
-  sm: '0.25em',
-  md: '0.5em',
-  lg: '0.75em',
-  xl: '1em',
-};
-
 export const boxProperties = defineProperties({
   properties: {
     flexDirection: ['row', 'column'],
     justifyContent: ['stretch', 'flex-start', 'center', 'flex-end', 'space-around', 'space-between'],
     alignItems: ['stretch', 'flex-start', 'center', 'flex-end'],
-    gap: space,
-    paddingTop: space,
-    paddingBottom: space,
-    paddingLeft: space,
-    paddingRight: space,
-    marginTop: space,
-    marginBottom: space,
-    marginLeft: space,
-    marginRight: space,
+    gap: spacing,
+    paddingTop: spacing,
+    paddingBottom: spacing,
+    paddingLeft: spacing,
+    paddingRight: spacing,
+    marginTop: spacing,
+    marginBottom: spacing,
+    marginLeft: spacing,
+    marginRight: spacing,
   },
   shorthands: {
     padding: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
