@@ -1,20 +1,26 @@
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 import { paddingVar } from './Accordion.css';
 
-export const container = style({
-  overflow: 'hidden',
+export const container = recipe({
+  base: {
+    overflow: 'hidden',
 
-  opacity: '0',
-  transition: 'height 0.2s ease, opacity 0.2s ease',
+    transition: 'height 0.2s ease, opacity 0.2s ease',
+  },
 
-  selectors: {
-    "[aria-expanded='true'] + &": {
-      visibility: 'visible',
+  variants: {
+    expanded: {
+      true: {
+        opacity: '1',
+      },
 
-      height: 'var(--height) !important',
+      false: {
+        height: '0',
 
-      opacity: '1',
+        opacity: '0',
+      },
     },
   },
 });
