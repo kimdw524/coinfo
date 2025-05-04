@@ -61,7 +61,7 @@ export const AccordionContent = ({ children }: AccordionContentProps) => {
   }, [containerRef, isExpanded]);
 
   return (
-    <div ref={containerRef} className={s.container({ expanded: false })}>
+    <div ref={containerRef} className={s.container({ expanded: isExpanded })}>
       <div className={s.inner}>{children}</div>
     </div>
   );
