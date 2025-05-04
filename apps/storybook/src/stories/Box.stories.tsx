@@ -86,6 +86,7 @@ export const BoxStory: Story = {
       </>
     ),
     flex: true,
+    rounded: false,
   },
   name: 'Box',
 };

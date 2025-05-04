@@ -1,5 +1,19 @@
-import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
-export const flex = style({
-  display: 'flex',
+import { theme } from '#themes';
+
+export const box = recipe({
+  variants: {
+    flex: {
+      true: {
+        display: 'flex',
+      },
+    },
+
+    rounded: {
+      true: {
+        borderRadius: theme.borderRadius,
+      },
+    },
+  },
 });

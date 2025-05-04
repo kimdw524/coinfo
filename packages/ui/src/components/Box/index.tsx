@@ -1,20 +1,23 @@
 import { forwardRef } from 'react';
 
+import { RecipeVariants } from '@vanilla-extract/recipes';
 import { clsx } from 'clsx';
 
 import { sprinkles, SprinklesProps } from '#styles';
 
 import * as s from './Box.css';
 
-interface BoxProps extends Partial<SprinklesProps>, Omit<React.HTMLAttributes<HTMLDivElement>, keyof SprinklesProps> {
-  flex?: boolean;
-}
+interface BoxProps
+  extends Partial<SprinklesProps>,
+    Omit<React.HTMLAttributes<HTMLDivElement>, keyof SprinklesProps>,
+    NonNullable<RecipeVariants<typeof s.box>> {}
 
 export const Box = forwardRef<HTMLDivElement, BoxProps>(
   (
     {
       children,
       flex = false,
+      rounded = false,
       flexDirection,
       justifyContent,
       alignItems,
@@ -46,7 +49,7 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
         ref={ref}
         className={clsx(
           className,
-          flex && s.flex,
+          s.box({ flex, rounded }),
           sprinkles({
             flexDirection,
             justifyContent,
