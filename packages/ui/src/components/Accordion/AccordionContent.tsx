@@ -12,6 +12,7 @@ interface AccordionContentProps {
 export const AccordionContent = ({ children }: AccordionContentProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const accordionContext = useContext(AccordionContext);
+  const initRef = useRef<boolean>(true);
 
   if (!accordionContext) {
     throw new Error('AccordionContent must be used within an Accordion component.');
@@ -31,12 +32,18 @@ export const AccordionContent = ({ children }: AccordionContentProps) => {
       //eslint-disable-next-line
       container.offsetTop;
       container.style.height = '0';
-
+      initRef.current = false;
       return;
     }
 
-    container.style.height = `${container.scrollHeight}px`;
+    if (initRef.current) {
+      container.style.height = 'auto';
+    } else {
+      container.style.height = `${container.scrollHeight}px`;
+    }
     container.className = s.container({ expanded: isExpanded });
+
+    initRef.current = false;
   }, [isExpanded]);
 
   useEffect(() => {
