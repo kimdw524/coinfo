@@ -47,7 +47,7 @@ export const useRipple = <T extends HTMLElement>() => {
       isTransitionEnd = false;
     };
 
-    const handlePointerUp = (e: PointerEvent) => {
+    const handlePointerUp = () => {
       if (!isMouseDown) {
         return;
       }

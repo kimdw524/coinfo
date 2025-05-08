@@ -1,4 +1,4 @@
-import { createVar, globalStyle, keyframes, style, styleVariants } from '@vanilla-extract/css';
+import { createVar, globalStyle, keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { theme } from '#themes';
@@ -44,6 +44,9 @@ const pulse = keyframes({
 });
 
 export const span = recipe({
+  base: {
+    lineHeight: '0',
+  },
   variants: {
     size: {
       sm: {
@@ -183,4 +186,6 @@ export const button = recipe({
 globalStyle(`${button()} svg`, {
   width: '1em',
   height: '1em',
+
+  lineHeight: '0',
 });
