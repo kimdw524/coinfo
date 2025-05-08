@@ -11,27 +11,18 @@ const getItem = (source: string, name: string) => {
   };
 };
 
-export const revalidate = 9;
-
 export async function GET() {
-  try {
-    const data = await fetch('https://www.google.com/finance/markets/indexes/americas');
-    const res = await data.text();
+  const data = await fetch('https://www.google.com/finance/markets/indexes/americas');
+  const res = await data.text();
 
-    const source = res.split('window.IJ_values =')[1];
+  const source = res.split('window.IJ_values =')[1]!;
 
-    if (!source) {
-      throw new Error();
-    }
-
-    return Response.json({
-      USDKRW: getItem(source, 'USD / KRW'),
-      INDEXDJX: getItem(source, '[".DJI","INDEXDJX"]'),
-      INDEXSP: getItem(source, '[".INX","INDEXSP"]'),
-      INDEXNASDAQ: getItem(source, '["NDX","INDEXNASDAQ"]'),
-    });
-  } catch (error) {
-    console.error(error);
-    return Response.error();
-  }
+  return Response.json({
+    USDKRW: getItem(source, 'USD / KRW'),
+    INDEXDJX: getItem(source, '[".DJI","INDEXDJX"]'),
+    INDEXSP: getItem(source, '[".INX","INDEXSP"]'),
+    INDEXNASDAQ: getItem(source, '["NDX","INDEXNASDAQ"]'),
+  });
 }
+
+export const revalidate = 9;
