@@ -34,4 +34,4 @@ export async function GET() {
 }
 
 export const revalidate = 9;
-export const dynamic = 'force-dymaic';
+export const dynamic = 'force-dynamic';
