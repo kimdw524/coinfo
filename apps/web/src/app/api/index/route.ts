@@ -1,32 +1,31 @@
 const getItem = (source: string, name: string) => {
-  const data = source.split(name)[1]?.split('[')[1]?.split(']')[0]?.split(',');
+  const data = source.split(`data-symbol="${name}" data-field="regularMarketPrice"`)[1];
 
   if (!data) {
     throw new Error();
   }
 
+  const value = data.split('data-value="')[1]?.split('"')[0],
+    change = data.split('<span')[1]?.split('>')[1]?.split('</spa')[0]?.replace('+', '');
+
   return {
-    value: Math.round(Number(data[0]) * 100) / 100,
-    change: Math.round(Number(data[1]) * 100) / 100,
+    value: Math.round(Number(value) * 100) / 100,
+    change: Math.round(Number(change) * 100) / 100,
   };
 };
 
 export async function GET() {
   try {
-    const data = await fetch('https://www.google.com/finance/markets/indexes/americas');
-    const res = await data.text();
-
-    const source = res.split('window.IJ_values =')[1];
-
-    if (!source) {
-      return Response.error();
-    }
+    const currency = await (await fetch('https://query1.finance.yahoo.com/v8/finance/chart/KRW=X')).json();
+    const index = await (await fetch('https://finance.yahoo.com/markets/commodities/')).text();
+    const current = currency.chart.result[0].meta.regularMarketPrice,
+      prev = currency.chart.result[0].meta.previousClose;
 
     return Response.json({
-      USDKRW: getItem(source, 'USD / KRW'),
-      INDEXDJX: getItem(source, '[".DJI","INDEXDJX"]'),
-      INDEXSP: getItem(source, '[".INX","INDEXSP"]'),
-      INDEXNASDAQ: getItem(source, '["NDX","INDEXNASDAQ"]'),
+      USDKRW: { value: current, change: current - prev },
+      INDEXDJX: getItem(index, 'YM=F'),
+      INDEXSP: getItem(index, 'ES=F'),
+      INDEXNASDAQ: getItem(index, 'NQ=F'),
     });
   } catch {
     return Response.error();
