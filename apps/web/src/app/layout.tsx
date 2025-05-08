@@ -1,6 +1,9 @@
+import '@/styles/globalStyle.css';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
+import NavBar from '@/components/NavBar';
+import Providers from '@/components/Providers';
 import ThemeProvider from '@/components/theme/ThemeProvider';
 
 export const metadata: Metadata = {
@@ -22,7 +25,10 @@ export default function RootLayout({
     <html lang="ko" suppressHydrationWarning>
       <body className={pretendard.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
+          <Providers>
+            <NavBar />
+            {children}
+          </Providers>
         </ThemeProvider>
       </body>
     </html>
