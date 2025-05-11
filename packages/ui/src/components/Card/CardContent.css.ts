@@ -2,7 +2,7 @@ import { recipe } from '@vanilla-extract/recipes';
 
 export const cardContent = recipe({
   base: {
-    height: '100%',
+    flex: '1 1 auto',
   },
 
   variants: {

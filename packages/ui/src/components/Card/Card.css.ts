@@ -28,7 +28,10 @@ const scaleColors = Object.entries(color).reduce(
 
 export const card = recipe({
   base: {
+    display: 'flex',
+    flexDirection: 'column',
     position: 'relative',
+    overflowY: 'hidden',
 
     border: '1px solid',
     borderColor: `rgb(${theme.color.border})`,

@@ -1,4 +1,4 @@
-import { Card, CardContent, cardCss, CardInteraction } from '@repo/ui';
+import { Card, CardContent, cardCss, CardInteraction, CardThumbnail } from '@repo/ui';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
@@ -42,4 +42,20 @@ export const CardInteractionStory: Story = {
     ),
   },
   name: 'CardInteraction',
+};
+
+export const CardThumbnailStory: Story = {
+  args: {
+    children: (
+      <>
+        <CardThumbnail src={'/src/assets/images/paella.jpg'} />
+        <CardContent>
+          <CardContent>CardThumbnail</CardContent>
+        </CardContent>
+      </>
+    ),
+    width: '300px',
+    height: '250px',
+  },
+  name: 'CardThumbnail',
 };
