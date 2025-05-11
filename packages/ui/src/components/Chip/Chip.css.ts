@@ -1,3 +1,4 @@
+import { theme } from '#themes';
 import { recipe } from '@vanilla-extract/recipes';
 
 export const chip = recipe({
@@ -17,7 +18,7 @@ export const chip = recipe({
       sm: {
         height: '1.5em',
         padding: '0 0.5em',
-        borderRadius: '0.625em',
+        borderRadius: `calc(${theme.borderRadius} * 0.75)`,
 
         fontSize: '0.75em',
       },
@@ -25,7 +26,7 @@ export const chip = recipe({
       md: {
         height: '1.875em',
         padding: '0 0.75em',
-        borderRadius: '0.75em',
+        borderRadius: theme.borderRadius,
 
         fontSize: '0.875em',
       },
@@ -33,7 +34,7 @@ export const chip = recipe({
       lg: {
         height: '2.25em',
         padding: '0 0.875em',
-        borderRadius: '0.875em',
+        borderRadius: `calc(${theme.borderRadius} * 1.25)`,
 
         fontSize: '1em',
       },
