@@ -1,7 +1,6 @@
 import { getDefaultStore, PrimitiveAtom, useAtom } from 'jotai';
 
-import { Market } from '@/atoms/asset';
-import { AssetDetail } from '@/types/asset';
+import { AssetDetail, Market } from '@/types/asset';
 import { exchangeRateAtom } from '@/atoms/exchangeRate';
 
 const useAssetPremium = (market: Partial<Record<Market, PrimitiveAtom<AssetDetail>>>): number | undefined => {

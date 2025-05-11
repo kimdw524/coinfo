@@ -1,13 +1,13 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useAtom } from 'jotai';
 
 import { Box, TableCell, TableRow, Typography } from '@repo/ui';
-import { withInViewport } from '@repo/utils';
-import { useAtom } from 'jotai';
+import { useOverlay, withInViewport } from '@repo/utils';
 
 import { assetFamily } from '@/atoms/asset';
 import AssetLogo from '@/components/asset/AssetLogo';
+import AssetOverview from '@/components/asset/AssetOverview';
 import useAssetPremium from '@/hooks/useAssetPremium';
 import useAtomAsync from '@/hooks/useAtomAsync';
 import { getColorByChange } from '@/utils/getColorByChange';
@@ -19,11 +19,15 @@ interface AssetItemProps {
 }
 
 const AssetItem = ({ name, symbol, ref }: AssetItemProps) => {
-  const router = useRouter();
   const [marketAtom] = useAtomAsync(assetFamily(symbol));
   const [market] = useAtom(marketAtom!);
   const [asset] = useAtom(Object.values(market)[0]!);
   const assetPremium = useAssetPremium(market);
+  const { push } = useOverlay();
+
+  const handleClick = () => {
+    push(<AssetOverview symbol={symbol} name={name} />);
+  };
 
   const price = asset?.trade_price || 0;
   const change = asset?.change_price || 0;
@@ -43,7 +47,7 @@ const AssetItem = ({ name, symbol, ref }: AssetItemProps) => {
   );
 
   return (
-    <TableRow ref={ref} interactive onClick={() => router.push(`/currencies/${symbol}`)}>
+    <TableRow ref={ref} interactive onClick={handleClick}>
       <TableCell>
         <Box flex alignItems="center" gap="md">
           <span>

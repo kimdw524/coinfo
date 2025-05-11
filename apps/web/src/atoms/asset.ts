@@ -3,18 +3,14 @@
 import { atom, PrimitiveAtom } from 'jotai';
 import { atomFamily } from 'jotai/utils';
 
-import { AssetDetail } from '@/types/asset';
+import { AssetDetail, Market } from '@/types/asset';
 
 export type MarketAtom = Partial<Record<Market, PrimitiveAtom<AssetDetail>>>;
 
 export interface AssetAtom {
   [key: string]: PrimitiveAtom<MarketAtom>;
 }
-export enum Market {
-  Upbit,
-  Bithumb,
-  Binance,
-}
+
 export const assetAtom = atom({} as AssetAtom);
 
 export const assetFamily = atomFamily((code: string) =>

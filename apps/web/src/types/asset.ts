@@ -1,5 +1,11 @@
 export type CurrencyCode = 'USD' | 'KRW';
 
+export enum Market {
+  Upbit,
+  Bithumb,
+  Binance,
+}
+
 export interface AssetDetail {
   name: string;
   symbol: string;
@@ -10,7 +16,6 @@ export interface AssetDetail {
   prev_closing_price: number;
   change_price: number;
   ask_bid: 'ASK' | 'BID';
-  trade_volume: number;
   highest_52_week_price?: number;
   highest_52_week_date?: string;
   lowest_52_week_price?: number;

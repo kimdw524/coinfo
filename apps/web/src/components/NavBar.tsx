@@ -11,7 +11,7 @@ const NavBar = () => {
   const { alert } = useDialog();
 
   const handleLoginClick = () => {
-    alert('아직 지원하지 않는 기능이에요.');
+    alert('아직 준비중인 기능입니다.');
   };
 
   return (

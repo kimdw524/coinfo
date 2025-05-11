@@ -1,5 +1,5 @@
-import { Market } from '@/atoms/asset';
 import useWebSocketAPI from '@/hooks/useWebSocketAPI';
+import { Market } from '@/types/asset';
 
 import type { BithumbTicker } from './types';
 
