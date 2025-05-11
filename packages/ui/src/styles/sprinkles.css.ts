@@ -32,6 +32,7 @@ export const colorProperties = defineProperties({
 export const boxProperties = defineProperties({
   properties: {
     flexDirection: ['row', 'column'],
+    flexWrap: ['nowrap', 'wrap', 'wrap-reverse', 'revert', 'revert-layer'],
     justifyContent: ['stretch', 'flex-start', 'center', 'flex-end', 'space-around', 'space-between'],
     alignItems: ['stretch', 'flex-start', 'center', 'flex-end'],
     gap: spacing,

@@ -19,6 +19,7 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
       flex = false,
       rounded = false,
       flexDirection,
+      flexWrap,
       justifyContent,
       alignItems,
       gap,
@@ -52,6 +53,7 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
           s.box({ flex, rounded }),
           sprinkles({
             flexDirection,
+            flexWrap,
             justifyContent,
             alignItems,
             gap,
