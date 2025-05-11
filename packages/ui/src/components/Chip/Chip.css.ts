@@ -9,7 +9,6 @@ export const chip = recipe({
 
     transition: 'all 0.2s ease',
 
-    cursor: 'default',
     userSelect: 'none',
   },
 
