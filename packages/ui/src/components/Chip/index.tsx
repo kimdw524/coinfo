@@ -15,7 +15,7 @@ interface ChipProps extends ChipVariants, Omit<React.ComponentProps<'div'>, keyo
   color?: SprinklesProps['color'];
 }
 
-const Chip = ({
+export const Chip = ({
   children,
   backgroundColor = 'primary',
   color = 'primary-foreground',
@@ -28,7 +28,5 @@ const Chip = ({
     </div>
   );
 };
-
-export default Chip;
 
 export { s as chipCss };

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Chip, { chipCss } from '@repo/ui/src/components/Chip';
+import { Chip, chipCss } from '@repo/ui/src/components/Chip';
 import { colorProperties } from '@repo/ui/src/styles';
 
 const meta = {
