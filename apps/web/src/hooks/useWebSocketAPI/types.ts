@@ -1,5 +1,4 @@
-import { Market } from '@/atoms/asset';
-import { AssetDetail } from '@/types/asset';
+import { AssetDetail, Market } from '@/types/asset';
 
 export interface WebSocketEvent {
   onopen?: WebSocket['onopen'];
