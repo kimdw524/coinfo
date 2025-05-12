@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 import useWebSocketAPI from '@/hooks/useWebSocketAPI';
 import { Market } from '@/types/asset';
 
@@ -7,14 +9,14 @@ const useBithumbWebSocket = () => {
   const webSocketAPI = useWebSocketAPI<BithumbTicker>({
     market: Market.Bithumb,
     url: 'wss://pubwss.bithumb.com/pub/ws',
-    formatSubscribe(tickers) {
+    formatSubscribe: useCallback((tickers) => {
       return JSON.stringify({
         type: 'ticker',
         symbols: tickers.map((ticker) => `${ticker}_KRW`),
         tickTypes: ['24H'],
       });
-    },
-    formatUpdate(data) {
+    }, []),
+    formatUpdate: useCallback((data) => {
       if (data.type !== 'ticker') {
         return;
       }
@@ -33,7 +35,7 @@ const useBithumbWebSocket = () => {
         currency_code: 'KRW',
         trade_price: Number(content.closePrice),
       };
-    },
+    }, []),
   });
 
   return webSocketAPI;

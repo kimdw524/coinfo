@@ -10,7 +10,6 @@ const useWebSocketAPI = <U>({ market, url, formatSubscribe, formatUpdate }: UseW
 
   const webSocketRef = useRef<WebSocket>(null);
   const eventRef = useRef<WebSocketEvent>({});
-  const readyState = webSocketRef.current?.readyState || 0;
 
   const connect = useCallback(() => {
     const socket = new WebSocket(url);
@@ -78,13 +77,12 @@ const useWebSocketAPI = <U>({ market, url, formatSubscribe, formatUpdate }: UseW
 
   return useMemo(
     () => ({
-      readyState,
       event: eventRef.current,
       connect,
       subscribe,
       close,
     }),
-    [readyState, connect, subscribe, close],
+    [connect, subscribe, close],
   );
 };
 

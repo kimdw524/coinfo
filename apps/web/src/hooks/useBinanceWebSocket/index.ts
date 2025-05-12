@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 import useWebSocketAPI from '@/hooks/useWebSocketAPI';
 import { Market } from '@/types/asset';
 
@@ -7,14 +9,14 @@ const useBinanceWebSocket = () => {
   const webSocketAPI = useWebSocketAPI<BinanceTicker>({
     market: Market.Binance,
     url: 'wss://stream.binance.com:9443/ws',
-    formatSubscribe(tickers) {
+    formatSubscribe: useCallback((tickers) => {
       return JSON.stringify({
         method: 'SUBSCRIBE',
         params: tickers.map((ticker) => `${ticker.toLowerCase()}usdt@ticker`),
         id: 1,
       });
-    },
-    formatUpdate(data) {
+    }, []),
+    formatUpdate: useCallback((data) => {
       if (data.e !== '24hrTicker') {
         return;
       }
@@ -34,7 +36,7 @@ const useBinanceWebSocket = () => {
         trade_volume: Number(data.Q),
         currency_code: 'USD',
       };
-    },
+    }, []),
   });
 
   return webSocketAPI;

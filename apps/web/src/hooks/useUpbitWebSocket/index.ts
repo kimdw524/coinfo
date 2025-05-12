@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 import useWebSocketAPI from '@/hooks/useWebSocketAPI';
 import { Market } from '@/types/asset';
 
@@ -7,7 +9,7 @@ const useUpbitWebSocket = () => {
   const webSocketAPI = useWebSocketAPI<UpbitTicker>({
     market: Market.Upbit,
     url: 'wss://api.upbit.com/websocket/v1',
-    formatSubscribe(tickers) {
+    formatSubscribe: useCallback((tickers) => {
       return JSON.stringify([
         {
           ticket: crypto.randomUUID(),
@@ -20,8 +22,8 @@ const useUpbitWebSocket = () => {
           format: 'DEFAULT',
         },
       ]);
-    },
-    formatUpdate(data) {
+    }, []),
+    formatUpdate: useCallback((data) => {
       const code = data.code.split('-')[1] || '';
 
       return {
@@ -41,7 +43,7 @@ const useUpbitWebSocket = () => {
         trade_volume: data.trade_volume,
         currency_code: 'KRW',
       };
-    },
+    }, []),
   });
 
   return webSocketAPI;

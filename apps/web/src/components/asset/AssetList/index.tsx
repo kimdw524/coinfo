@@ -1,5 +1,7 @@
 'use client';
 
+import { useMemo } from 'react';
+
 import { Box } from '@repo/ui';
 import clsx from 'clsx';
 import { useAtom } from 'jotai';
@@ -14,7 +16,8 @@ import useRealTimePrice from '@/hooks/useRealTimePrice';
 import * as s from './style.css';
 
 const AssetList = () => {
-  useRealTimePrice(currencies.map((currency) => currency.symbol));
+  const symbols = useMemo(() => currencies.map((currency) => currency.symbol), []);
+  useRealTimePrice(symbols);
 
   const [assetLayout] = useAtom(assetLayoutAtom);
 
