@@ -1,6 +1,9 @@
+import { createContainer } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { theme } from '#themes';
+
+export const navigationBarContainer = createContainer();
 
 export const navigationBar = recipe({
   base: {
@@ -21,6 +24,9 @@ export const navigationBar = recipe({
     color: `rgb(${theme.color.foreground})`,
 
     transition: 'border-bottom-color 0.2s ease',
+
+    containerType: 'inline-size',
+    containerName: navigationBarContainer,
   },
   variants: {
     size: {
