@@ -13,7 +13,7 @@ interface AssetOverviewProps {
 
 const AssetOverview = ({ symbol, name }: AssetOverviewProps) => {
   return (
-    <Box backgroundColor="background" padding="xl" className={s.modal} rounded>
+    <Box flex flexDirection="column" backgroundColor="background" padding="xl" className={s.modal} rounded>
       <Box flex justifyContent="space-between" alignItems="center" marginBottom="xl">
         <Box flex alignItems="center" gap="lg">
           <AssetLogo symbol={symbol} width={32} height={32} />
@@ -28,7 +28,7 @@ const AssetOverview = ({ symbol, name }: AssetOverviewProps) => {
       <AssetDetailPrice
         symbol={symbol}
         chart={
-          <div style={{ height: '300px' }}>
+          <div style={{ flex: '1 1 auto', height: '300px' }}>
             <TradingViewWidget />
           </div>
         }
