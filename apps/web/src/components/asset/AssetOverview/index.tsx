@@ -1,4 +1,9 @@
-import { Box, Typography } from '@repo/ui';
+import { useRef } from 'react';
+
+import { Maximize2Icon, XIcon } from 'lucide-react';
+
+import { Box, Button, Typography } from '@repo/ui';
+import { useOverlay } from '@repo/utils';
 
 import AssetDetailPrice from '@/components/asset/AssetDetailPrice';
 import AssetLogo from '@/components/asset/AssetLogo';
@@ -12,18 +17,46 @@ interface AssetOverviewProps {
 }
 
 const AssetOverview = ({ symbol, name }: AssetOverviewProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { close } = useOverlay();
+
+  const hadnleMaximizeClick = () => {
+    const container = containerRef.current;
+
+    if (!container) {
+      return;
+    }
+
+    container.style.width = '100vw';
+    container.style.height = '100vh';
+  };
+
   return (
-    <Box flex flexDirection="column" backgroundColor="background" padding="xl" className={s.modal} rounded>
+    <Box
+      ref={containerRef}
+      flex
+      flexDirection="column"
+      backgroundColor="background"
+      padding="xl"
+      className={s.modal}
+      rounded
+    >
       <Box flex justifyContent="space-between" alignItems="center" marginBottom="xl">
         <Box flex alignItems="center" gap="lg">
           <AssetLogo symbol={symbol} width={32} height={32} />
           <Typography size="3xl" weight="medium">
             {name}
           </Typography>
-        </Box>
-        <div>
           <Typography color="muted-foreground">{symbol}</Typography>
-        </div>
+        </Box>
+        <Box flex gap="md">
+          <Button size="icon-sm" onClick={hadnleMaximizeClick}>
+            <Maximize2Icon />
+          </Button>
+          <Button size="icon-sm" color="red" onClick={close}>
+            <XIcon />
+          </Button>
+        </Box>
       </Box>
       <AssetDetailPrice
         symbol={symbol}
