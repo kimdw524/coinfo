@@ -1,5 +1,6 @@
-import { Accordion, AccordionContent, AccordionTrigger } from '@repo/ui';
 import type { Meta, StoryObj } from '@storybook/react';
+
+import { Accordion, AccordionContent, AccordionTrigger } from '@repo/ui';
 
 const meta = {
   title: 'UI/Accordion',
@@ -13,6 +14,10 @@ const meta = {
     },
     padding: {
       control: 'boolean',
+      description: '좌우 패딩을 적용 여부를 나타냅니다.',
+    },
+    expanded: {
+      description: '기본적으로 Accordion이 펼쳐 있을지 여부를 나타냅니다.',
     },
   },
   tags: ['autodocs'],
