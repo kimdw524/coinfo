@@ -2,22 +2,23 @@ import { useEffect, useRef } from 'react';
 
 function TradingViewWidget() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const test = useRef<boolean>(false);
+  const preventStrictRef = useRef<boolean>(false);
 
   useEffect(() => {
     const container = containerRef.current;
 
-    if (!container || test.current) {
+    if (!container || preventStrictRef.current) {
       return;
     }
 
-    test.current = true;
+    preventStrictRef.current = true;
 
-    const script = document.createElement('script');
-    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
-    script.type = 'text/javascript';
-    script.async = true;
-    script.innerHTML = `
+    setTimeout(() => {
+      const script = document.createElement('script');
+      script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+      script.type = 'text/javascript';
+      script.async = true;
+      script.innerHTML = `
         {
           "autosize": true,
           "symbol": "NASDAQ:AAPL",
@@ -29,7 +30,8 @@ function TradingViewWidget() {
           "allow_symbol_change": true,
           "support_host": "https://www.tradingview.com"
         }`;
-    container.appendChild(script);
+      container.appendChild(script);
+    }, 350);
   }, [containerRef]);
 
   return (
