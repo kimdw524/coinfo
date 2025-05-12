@@ -13,7 +13,7 @@ function TradingViewWidget() {
 
     preventStrictRef.current = true;
 
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       const script = document.createElement('script');
       script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
       script.type = 'text/javascript';
@@ -31,6 +31,10 @@ function TradingViewWidget() {
           "support_host": "https://www.tradingview.com"
         }`;
       container.appendChild(script);
+
+      return () => {
+        clearTimeout(timer);
+      };
     }, 350);
   }, [containerRef]);
 
