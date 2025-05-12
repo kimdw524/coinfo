@@ -41,7 +41,7 @@ export const NavigationStory: Story = {
   args: {
     children: (
       <>
-        <NavigationLogo>asd</NavigationLogo>
+        <NavigationLogo>Logo</NavigationLogo>
         <NavigationMenu>
           <NavigationItem>
             <Button color="secondary">메뉴1</Button>
