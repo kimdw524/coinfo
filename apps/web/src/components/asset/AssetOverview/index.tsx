@@ -62,7 +62,7 @@ const AssetOverview = ({ symbol, name }: AssetOverviewProps) => {
         symbol={symbol}
         chart={
           <div style={{ flex: '1 1 auto', height: '300px' }}>
-            <TradingViewWidget />
+            <TradingViewWidget symbol={symbol} />
           </div>
         }
       />

@@ -1,6 +1,10 @@
 import { useEffect, useRef } from 'react';
 
-function TradingViewWidget() {
+interface TradingViewWidgetProps {
+  symbol: string;
+}
+
+const TradingViewWidget = ({ symbol }: TradingViewWidgetProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const preventStrictRef = useRef<boolean>(false);
 
@@ -21,7 +25,7 @@ function TradingViewWidget() {
       script.innerHTML = `
         {
           "autosize": true,
-          "symbol": "NASDAQ:AAPL",
+          "symbol": "${symbol}USDT",
           "interval": "D",
           "timezone": "Etc/UTC",
           "theme": "light",
@@ -31,12 +35,15 @@ function TradingViewWidget() {
           "support_host": "https://www.tradingview.com"
         }`;
       container.appendChild(script);
-
-      return () => {
-        clearTimeout(timer);
-      };
     }, 350);
-  }, [containerRef]);
+
+    return () => {
+      //eslint-disable-next-line
+      if (process.env.NODE_ENV === 'production') {
+        clearTimeout(timer);
+      }
+    };
+  }, [containerRef, symbol]);
 
   return (
     <div className="tradingview-widget-container" ref={containerRef} style={{ height: '100%', width: '100%' }}>
@@ -48,6 +55,6 @@ function TradingViewWidget() {
       </div>
     </div>
   );
-}
+};
 
 export default TradingViewWidget;
